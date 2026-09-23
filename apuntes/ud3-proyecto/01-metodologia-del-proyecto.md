@@ -326,7 +326,7 @@ Está permitido y se anima; lo que se pide es trazabilidad. Lo que funciona:
 **Lo que no funciona**, y se detecta en la exposición: pedir "hazme un informe de transformación
 digital de una empresa de X" y entregar el resultado. Produce un texto correcto, genérico, sin
 decisiones, con un glosario limpio, sin ningún "no", y con una sección de IA que recomienda "un
-chatbot". La primera pregunta del comité lo desmonta.
+chatbot". La primera pregunta de la exposición lo desmonta.
 
 ## Para debatir en los talleres
 

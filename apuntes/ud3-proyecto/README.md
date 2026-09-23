@@ -1,8 +1,8 @@
 # UD3 — El proyecto
 
 Tercer trimestre. No hay contenido nuevo ni examen: es el trimestre en el que se trabaja, se
-defiende y se evalúa el proyecto de transformación digital de una empresa elegida por cada alumno
-(o pareja). Pesa el 40 % de la nota final.
+defiende y se evalúa el proyecto de transformación digital de una empresa elegida por cada alumno.
+Pesa el 40 % de la nota final.
 
 | Apunte | Qué es |
 |---|---|

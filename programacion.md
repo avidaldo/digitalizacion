@@ -34,6 +34,10 @@ IA te escriba algo bonito; lo que se evalúa es que **tú** entiendas lo que hay
 defenderlo. En la exposición final te van a hacer preguntas concretas sobre tus propias decisiones —
 si no las puedes responder, se nota.
 
+Se valora también el proceso, no solo el documento final: que el repositorio muestre trabajo repartido
+en el tiempo (no todo de golpe al final), y que participes preguntando en las exposiciones de tus
+compañeros — cada alumno tiene que formular al menos una pregunta a lo largo del trimestre.
+
 ## Recuperación (junio)
 
 Si no superas el módulo por evaluación continua, hay una recuperación en junio: **un único examen**

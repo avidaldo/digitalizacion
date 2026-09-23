@@ -21,6 +21,23 @@ qué riesgos y por qué esa solución tiene sentido.
 - Los riesgos de seguridad, privacidad, coste y dependencia.
 - El posible uso de IA, y también dónde **no** conviene usarla.
 
+## Cómo se valora el trabajo a lo largo del trimestre
+
+No solo se evalúa el documento final. La nota del proyecto (0 a 10, que equivale al 40 % de la nota
+final) se reparte así:
+
+- **Contenido del informe — 4 de los 10 puntos.** Profundidad y justificación aplicada a tu empresa
+  concreta. Extensión no es lo mismo que calidad: un informe corto y bien argumentado puntúa más que
+  uno largo con relleno o afirmaciones genéricas que no se aplican a tu caso.
+- **Trabajo progresivo en el repositorio — 1,5 de los 10 puntos.** Commits repartidos a lo largo de
+  las sesiones de taller, no una entrega de última hora ni todo concentrado en las últimas 48 horas.
+- **La exposición — 2,5 de los 10 puntos.** Te van a preguntar sobre tus propias decisiones; hay que
+  poder justificarlas, no solo describirlas.
+- **Preguntas a tus compañeros durante sus exposiciones — 1 de los 10 puntos.** Cada alumno debe
+  formular al menos una pregunta a lo largo del trimestre. Una buena pregunta obliga a razonar la
+  respuesta, no es un trámite.
+- **Nota de uso de IA — 1 de los 10 puntos.** Que sea completa y honesta — ver la sección siguiente.
+
 ## Uso de IA en el propio trabajo
 
 Si se han usado herramientas de IA para investigar, redactar, diseñar o programar, conviene añadir
