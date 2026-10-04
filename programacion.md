@@ -18,6 +18,7 @@
 - **No hay examen en el 3er trimestre.** Ese trimestre se dedica por completo al proyecto: trabajarlo
   en clase, resolver dudas y exponerlo.
 - **Nota final = media de los tres trimestres**, con esos pesos (30% + 30% + 40%).
+- **Para aprobar necesitas al menos un 4 en cada trimestre y al menos un 5 de media.** Si un trimestre se queda por debajo de 4, la nota final cuenta como máximo 4, aunque la media salga más alta. Por ejemplo, un 10 en los dos exámenes con un 0 en el proyecto daría un 6 de media, pero no aprueba.
 
 ## El proyecto
 
@@ -40,7 +41,6 @@ compañeros — cada alumno tiene que formular al menos una pregunta a lo largo 
 
 ## Recuperación (junio)
 
-Si no superas el módulo por evaluación continua, hay una recuperación en junio: **un único examen**
-que cubre todo el contenido del curso, dividido en 3 partes (una por trimestre) — incluida la parte
-del proyecto, aunque durante el curso esa parte se evalúe con el informe y la exposición en vez de con
-un examen.
+Si no superas el módulo por evaluación continua, hay una recuperación en junio: **un único examen** tipo test dividido en 3 partes, una por trimestre, incluida la del proyecto (aunque durante el curso el proyecto se evalúe con el informe y la exposición, no con un examen).
+
+Solo haces las partes de los trimestres en los que tengas menos de un 5. En cada parte te quedas con la mejor nota, la del curso o la de junio, y después se aplica la misma regla: al menos un 4 en cada trimestre y un 5 de media.
