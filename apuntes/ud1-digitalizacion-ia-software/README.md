@@ -14,7 +14,7 @@ que un desarrollador va a usar a diario.
 | [06 Seguir un dato de punta a punta](06-extremo-a-extremo.md) | Qué tiene que ocurrir para que un dato atraviese una empresa sin perder sentido. |
 | [07 Qué es "la IA"](07-que-es-la-ia.md) | Distinguir IA simbólica, ML, *deep learning* y LLM. |
 | [08 IA, datos, sectores y lenguajes](08-ia-datos-sectores-lenguajes.md) | Datos, aplicaciones de IA y herramientas con las que se construyen. |
-| [09 IA para el desarrollo de software](09-ia-para-el-desarrollo-de-software.md) | Asistentes, agentes, RAG, MCP y automatización. |
+| [09 IA para el desarrollo de software](09-ia-para-el-desarrollo-de-software.md) | Asistentes, agentes, RAG, MCP, automatización y flujos SDD/TDD. |
 | [10 Seguridad y regulación](10-seguridad-y-regulacion.md) | Riesgos al tratar datos y conectar IA a sistemas reales. |
 
 Términos de esta unidad con más de un significado — recogidos en [`../glosario-vivo.md`](../glosario-vivo.md):
