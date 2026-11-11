@@ -148,6 +148,43 @@ espera, reintentos, coste, y las cautelas específicas de [10](10-seguridad-y-re
 alrededor de un componente no determinista. Python aparece cuando hay que entrenar, evaluar o
 analizar datos — y es fácil de añadir a un perfil de DAM.
 
+**Qué es, en concreto, "una llamada HTTP a una API" de un LLM.** La misma petición REST que se ve con PokeAPI en [04](04-front-back-cliente-servidor.md), con tres diferencias: el método es `POST`, porque se envía un cuerpo; lleva una **clave de API** que identifica a quien paga; y la respuesta dice cuántos *tokens* se han consumido. Una petición mínima a la API de Anthropic (las de OpenAI o Google tienen la misma forma, con otros nombres de campo):
+
+```http
+POST https://api.anthropic.com/v1/messages
+x-api-key: <clave secreta: vive en el servidor, nunca en el cliente>
+anthropic-version: 2026-10-21
+content-type: application/json
+
+{
+  "model": "claude-haiku-5-5",
+  "max_tokens": 1000,
+  "system": "Clasifica el correo en una categoría: pedido, incidencia o spam. Responde solo la categoría.",
+  "messages": [
+    { "role": "user", "content": "Hola, el pedido 4512 llegó con una lata abollada." }
+  ]
+}
+```
+
+Y la respuesta, resumida (los números son ilustrativos):
+
+```json
+{
+  "role": "assistant",
+  "model": "claude-haiku-5-5",
+  "content": [ { "type": "text", "text": "incidencia" } ],
+  "stop_reason": "end_turn",
+  "usage": { "input_tokens": 48, "output_tokens": 4 }
+}
+```
+
+`content` es una lista de bloques: con el razonamiento activo puede llegar antes un bloque de tipo `thinking`, así que el código busca el bloque de tipo `text` en vez de leer siempre el primero. Cada campo conecta con algo ya visto:
+
+- **La clave va en el backend.** Si una app llama al proveedor directamente desde el navegador o el móvil, la clave es pública, por mucho que se ofusque (tabla «Dónde vive cada lógica» de [04](04-front-back-cliente-servidor.md)).
+- **La API no recuerda nada.** Para seguir una conversación se reenvía la lista `messages` entera en cada petición (la fila "memoria" de [07](07-que-es-la-ia.md)), y por eso el coste crece con cada turno.
+- **`usage` es la factura.** Entrada y salida se cobran por separado y a precios distintos ([UD2-02](../ud2-tecnologias-arquitectura/02-sostenibilidad-coste-y-mercados.md)), y `model` es la gama elegida ([07](07-que-es-la-ia.md)).
+- **La respuesta no es determinista.** El mismo correo puede clasificarse distinto otro día, o con otra redacción ("Incidencia."). El código que la recibe comprueba que sea una de las tres categorías antes de usarla: "nunca confíes en el cliente", aplicado ahora al modelo (manejo inseguro de la salida, [10](10-seguridad-y-regulacion.md)).
+
 **¿Y el *prompt* es un lenguaje de programación?** No en sentido estricto: no tiene sintaxis formal
 ni semántica definida, y el mismo texto produce resultados distintos con modelos distintos. Pero
 hay un continuo: los *prompts* se versionan, se prueban y se componen como código; hay bibliotecas
@@ -165,3 +202,4 @@ razonable: el *prompt* no es código, pero se gestiona como código.
   verdad.
 - Buscar un producto que anuncie "con IA" y clasificar en qué sector está, qué tipo de modelo
   probablemente usa y qué datos ha necesitado. ¿Podría hacerse sin esos datos?
+- Comparar la llamada a PokeAPI de [04](04-front-back-cliente-servidor.md) con la llamada al LLM de este apunte. ¿Qué es igual (protocolo, formato, códigos de estado)? ¿Qué cambia (coste, secreto, determinismo)? ¿Qué debería hacer el código si el modelo responde "Creo que es una incidencia" en vez de "incidencia"?

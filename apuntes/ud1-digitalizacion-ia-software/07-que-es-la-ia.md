@@ -150,6 +150,52 @@ La última fila resume el criterio: **si el problema tiene una respuesta correct
 calcula**. El LLM entra donde la entrada es lenguaje o imagen con variedad que no se puede
 enumerar, y donde una respuesta aproximada revisable vale más que ninguna.
 
+## Qué LLM: proveedores, gamas, esfuerzo y contexto
+
+Decidido que la herramienta es un LLM, queda elegir cuál y cómo usarlo, y no hay "el mejor modelo": hay una elección en cuatro ejes — **gama** (capacidad frente a coste y velocidad), **esfuerzo** de razonamiento, **contexto** y **dónde se ejecuta** — que cada herramienta deja ajustar y que conviene adaptar a cada tarea. Los nombres concretos cambian cada pocos meses; la estructura de la elección se mantiene desde 2023.
+
+**Quién fabrica los modelos** (noviembre de 2026):
+
+| Proveedor | Familia | Pesos | Dónde aparece |
+|---|---|---|---|
+| OpenAI | GPT (las variantes *Codex* están ajustadas para programar) | Cerrados: solo por API o en sus productos | ChatGPT, Codex, Copilot |
+| Anthropic | Claude: Haiku, Sonnet, Opus y Fable, de menor a mayor | Cerrados | Claude, Claude Code, Copilot |
+| Google | Gemini (las variantes *Flash* son las rápidas) | Cerrados; Gemma es su familia abierta | Gemini, Copilot |
+| xAI | Grok | Cerrados | Grok, Copilot |
+| Meta, Mistral, Alibaba, DeepSeek, Moonshot | Llama, Mistral, Qwen, DeepSeek, Kimi | Familias con modelos de **pesos abiertos** — descargables, con licencias variadas —, aunque no todos sus modelos lo son | Ollama, LM Studio ([UD2-04](../ud2-tecnologias-arquitectura/04-edge-fog-mist.md)), nubes de terceros; algunos también en Copilot |
+
+**Gamas: más grande no siempre es mejor.** Cada proveedor ofrece su familia en varios tamaños, y la diferencia de precio es de dos órdenes de magnitud: en la API de Anthropic, de 0,10 a 10 dólares por millón de *tokens* de entrada entre el modelo más pequeño y el más capaz (noviembre de 2026).
+
+| Gama | Ejemplos | Para qué |
+|---|---|---|
+| Pequeña y rápida | Haiku, Gemini Flash, las variantes *mini* y *nano* de GPT | Clasificar, extraer, resumir, autocompletar; subagentes que leen mucho; respuestas en segundos |
+| Intermedia | Sonnet y equivalentes | El trabajo diario de programación con un alcance claro |
+| Grande | Opus, Fable y las gamas altas de GPT y Gemini | Depurar un fallo difícil, decisiones de arquitectura, tareas largas con poca supervisión |
+
+Dos matices: un modelo intermedio de hoy suele superar al grande de hace un año, así que comparar por gama solo vale dentro de la misma generación; y lo que se compara no es el coste por petición sino el coste por tarea terminada — un modelo barato que necesita tres intentos no sale barato.
+
+**Esfuerzo: cuánto piensa antes de responder.** Los modelos con razonamiento generan texto interno (*thinking*) antes de la respuesta visible. El **esfuerzo** (*effort*) regula cuánto: más esfuerzo da mejores resultados en problemas difíciles, a cambio de más *tokens* — que se pagan como salida aunque la herramienta solo muestre un resumen o nada — y más espera, con rendimientos decrecientes y el riesgo de "pensar de más" en lo sencillo. Cada proveedor lo llama a su manera: *reasoning effort* en OpenAI, *effort* en Anthropic, nivel o presupuesto de *thinking* en Google. La documentación de Claude Code da una guía razonable para sus niveles:
+
+| Nivel | Cuándo |
+|---|---|
+| `low` | Intercambios rápidos que se revisan uno a uno: una lluvia de ideas, un primer borrador, renombrar algo |
+| `medium` | El trabajo diario con alcance claro; es el valor por defecto en los modelos actuales |
+| `high` | Cuando importa verificar o hay casos límite probables: arreglar un fallo en código existente |
+| `xhigh`, `max` | Problemas difíciles que se quiere que el agente resuelva solo; `max` puede sobrepensar, y conviene probarlo antes de adoptarlo |
+
+**Contexto: más grande no es más fácil.** La ventana de contexto (la fila "memoria" de la tabla anterior) llega ya al millón de *tokens* en muchos modelos — varios libros —, pero llenarla tiene tres costes. Cada vuelta reenvía todo, así que el coste y la espera crecen con la conversación ([UD2-02](../ud2-tecnologias-arquitectura/02-sostenibilidad-coste-y-mercados.md)). Los modelos encuentran peor la información en contextos largos llenos de material irrelevante (está medido: es el efecto "perdido en el medio", Liu et al., 2023). Y cuando la ventana se llena, la herramienta resume la conversación (*compacta*) y los detalles se pierden. De ahí la práctica: una conversación por tarea, los ficheros pertinentes en vez del repositorio entero, conversación nueva al cambiar de tema, y revisar los resúmenes antes de seguir ([09](09-ia-para-el-desarrollo-de-software.md)).
+
+**Dónde se elige cada cosa** (noviembre de 2026; los menús cambian a menudo, lo estable es *qué* se elige):
+
+| | GitHub Copilot (VS Code, CLI) | Claude Code |
+|---|---|---|
+| **Modelo** | Selector en el chat; **Auto** elige el modelo por el usuario. En los planes Free y Student solo existe Auto | `/model`, con los alias `haiku`, `sonnet`, `opus` y `fable`; `opusplan` usa Opus para planificar y Sonnet para ejecutar |
+| **Esfuerzo** | Razonamiento configurable en los modelos que lo admiten | `/effort` (de `low` a `max`) o las flechas dentro de `/model`; la palabra `ultrathink` en un *prompt* lo sube solo para esa petición |
+| **Contexto** | Ventana de un millón de *tokens* en algunos modelos, solo en VS Code y en la CLI | `/context` muestra qué lo ocupa; `/compact` lo resume; `/clear` empieza de cero |
+| **Coste** | Desde junio de 2026, créditos (*GitHub AI Credits*): cada interacción gasta según el modelo y los *tokens*, contra una asignación mensual por plan | Suscripción con límites de uso, o pago por *token* con una clave de API ([08](08-ia-datos-sectores-lenguajes.md)) |
+
+La regla práctica que resume la sección: **la gama y el esfuerzo se suben cuando el problema es difícil y equivocarse cuesta más que esperar; el contexto se mantiene pequeño y pertinente siempre.**
+
 ## Importancia presente y futura — con la medida justa
 
 **Presente (2026).** La IA generativa está desplegada de forma masiva en tres ámbitos: asistencia al
@@ -190,3 +236,4 @@ desarrolla en [09](09-ia-para-el-desarrollo-de-software.md).
   lo llama? ¿Qué se prueba realmente?
 - ¿En qué tarea concreta del propio ciclo formativo un LLM es claramente la herramienta correcta, y
   en cuál es claramente la incorrecta?
+- Renombrar una variable en 40 ficheros; encontrar por qué una prueba falla una de cada diez veces; resumir un PDF de 200 páginas. ¿Qué gama, qué esfuerzo y cuánto contexto para cada tarea? Justificar con el coste, la espera y cómo se comprueba el resultado.

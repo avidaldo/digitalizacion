@@ -33,8 +33,7 @@ Alternativa: **peer-to-peer** (P2P), donde cada nodo es cliente y servidor a la 
 la red de Bitcoin, Git entre repositorios). No hay un centro. El contraste sirve para ver que
 cliente/servidor es una elección, no una ley.
 
-**"Servidor" tiene al menos seis acepciones en uso corriente**, y en una misma conversación de
-trabajo se mezclan:
+**"Servidor" tiene al menos siete acepciones en uso corriente**, y en una misma conversación de trabajo se mezclan:
 
 | Acepción | Ejemplo de frase | Qué es realmente |
 |---|---|---|
@@ -94,12 +93,71 @@ un accidente histórico, no una regla, y la tecnología reciente lo ha roto en t
 | Escritorio con Electron/Tauri (VS Code, Slack) | Máquina local, con tecnología web | Local + servidores remotos | Tecnología de navegador sin navegador |
 | *Edge functions* (Cloudflare Workers, Vercel Edge) | — | En cientos de puntos de la red, cerca del usuario | Backend que no está "en el servidor" sino "por todas partes" |
 | BFF (*Backend For Frontend*) | Navegador/móvil | Un backend específico por cada frontend, delante del backend real | Un backend que es "del frontend" |
-| Aplicación *local-first* (Linear, Figma, Obsidian con sincronización) | Local | Local, con sincronización a un servidor que solo replica | El servidor es un espejo, no la fuente de verdad |
+| Aplicación *local-first* (Obsidian con sincronización, aplicaciones construidas con Automerge o Yjs) | Local | Local, con sincronización a un servidor que solo replica | El servidor es un espejo, no la fuente de verdad. Linear y Figma toman de aquí los datos en local y la sincronización, pero su servidor sigue siendo el árbitro |
 
 La conclusión operativa: **ante cualquier pieza de código conviene hacerse dos preguntas separadas**
 — ¿qué responsabilidad tiene (presentar o decidir)? ¿dónde se ejecuta (en la máquina del usuario, en
 una máquina propia, en la red de un proveedor)? — y no dar por hecho que la respuesta a una
 determina la otra.
+
+## La frontera con nombre: una API REST sobre HTTP
+
+Entre frontend y backend — y entre cualquier par de sistemas que se integran — hay un **contrato**: qué se puede pedir, en qué formato y qué se recibe. Ese contrato es la **API** (*Application Programming Interface*). En la web casi siempre toma la forma de una **API REST sobre HTTP con JSON**, y es el estándar que más conviene dominar porque es el mismo en todas partes: la app móvil que habla con su servidor, el ERP que recibe facturas ([01](01-que-es-digitalizar.md)), el MES que entrega datos de planta ([06](06-extremo-a-extremo.md)) y la aplicación que llama a un LLM ([08](08-ia-datos-sectores-lenguajes.md)).
+
+**HTTP: una petición y una respuesta.** HTTP es un protocolo de texto de petición/respuesta y **sin estado**: cada petición lleva todo lo necesario para atenderla, y el servidor no recuerda la anterior. Lo que parece memoria — la sesión de un usuario — se reconstruye en cada petición a partir de un *token* o una *cookie* que el cliente vuelve a enviar.
+
+| Pieza | Petición | Respuesta |
+|---|---|---|
+| Primera línea | Método y ruta: `GET /api/v2/pokemon/pikachu` | Código de estado: `200 OK` |
+| Cabeceras | `Accept: application/json`, `Authorization: Bearer ...` | `Content-Type: application/json`, `Cache-Control: max-age=86400` |
+| Cuerpo | Vacío en un `GET`; JSON en un `POST` | El recurso, en JSON |
+
+**REST** (Roy Fielding, 2000) es un estilo de arquitectura, no un protocolo: cada **recurso** tiene una URL (`/pokemon/25`), se manipula con los métodos de HTTP y lo que viaja es una **representación** suya, hoy casi siempre JSON.
+
+| Método | Significado | Seguro (no cambia nada) | Idempotente (repetirlo equivale a hacerlo una vez) |
+|---|---|---|---|
+| `GET` | Leer | Sí | Sí |
+| `POST` | Crear, o lanzar una acción | No | No |
+| `PUT` | Sustituir entero | No | Sí |
+| `PATCH` | Modificar una parte | No | No necesariamente |
+| `DELETE` | Borrar | No | Sí |
+
+Los **códigos de estado** dicen qué ha pasado y de quién es el error: `2xx`, bien (`200` correcto, `201` creado, `204` sin contenido); `3xx`, el recurso está en otro sitio; `4xx`, error del cliente (`400` petición mal formada, `401` sin autenticar, `403` sin permiso, `404` no existe, `429` demasiadas peticiones); `5xx`, error del servidor.
+
+**El ejemplo de clase: PokeAPI.** Una API pública, gratuita, sin registro ni clave, y de solo lectura: solo acepta `GET`. Se prueba en el navegador o en la terminal:
+
+```bash
+curl https://pokeapi.co/api/v2/pokemon/pikachu
+```
+
+La respuesta es un `200` con `Content-Type: application/json`. Un fragmento (la respuesta entera pesa unos 300 KB, casi todo la lista de movimientos):
+
+```json
+{
+  "id": 25,
+  "name": "pikachu",
+  "height": 4,
+  "weight": 60,
+  "types": [
+    { "slot": 1, "type": { "name": "electric", "url": "https://pokeapi.co/api/v2/type/13/" } }
+  ],
+  "stats": [
+    { "base_stat": 35, "effort": 0, "stat": { "name": "hp", "url": "https://pokeapi.co/api/v2/stat/1/" } }
+  ]
+}
+```
+
+Lo que enseña ese fragmento:
+
+- **JSON** es texto con seis tipos de valor: objeto `{}`, lista `[]`, cadena, número, booleano y `null`. Cualquier lenguaje lo lee y lo escribe; por eso desplazó a XML en las API web.
+- **Los recursos enlazan a otros recursos.** El tipo `electric` no viene entero: viene su URL (`/type/13/`), y el cliente la sigue si la necesita. Es la idea de REST de que cada respuesta lleva los enlaces para seguir navegando.
+- **Las unidades son parte del contrato.** `"weight": 60` no son 60 kg: la documentación de PokeAPI da el peso en hectogramos (6 kg) y la altura en decímetros (0,4 m). Un número cuya unidad no está acordada es el problema de la báscula de [06](06-extremo-a-extremo.md), ahora en una API.
+- **Las listas se paginan.** `GET /api/v2/pokemon?limit=3&offset=0` no devuelve los más de 1300 pokémon: devuelve el total (`count`), una página de `results` — cada uno con su `name` y su `url` — y la URL de la página siguiente (`next`).
+- **Los errores también son respuestas.** `GET /api/v2/pokemon/noexiste` devuelve `404`, y el cliente tiene que tratarlo como un resultado posible, no romperse.
+
+**"REST" también se mueve.** En sentido estricto, el de Fielding, REST exige además que el cliente navegue por los enlaces que le da el servidor (*hypermedia*, HATEOAS), y casi ninguna API lo cumple del todo. En el uso corriente, "API REST" significa recursos con URL, métodos HTTP y JSON. Y hay API que se llaman REST y solo usan `POST` contra una URL con un campo `accion` en el cuerpo: son llamadas a procedimiento remoto (RPC) sobre HTTP. Las alternativas con nombre propio — GraphQL, gRPC, WebSocket — están en la tabla de comunicación de más abajo.
+
+Desde el lado del backend, la API es la frontera que hay que validar: cualquiera puede enviarle peticiones con `curl` sin pasar por la interfaz, que es exactamente la regla "nunca confíes en el cliente" de la tabla «Dónde vive cada lógica».
 
 ## Arquitectura de alto nivel de una aplicación
 
@@ -175,12 +233,7 @@ La otra decisión estructural: **cuántos procesos de backend hay**.
 - **Monolito modular**: un despliegue, pero con fronteras internas estrictas entre módulos. La
   opción que más se recomienda en 2026 para empezar.
 
-Caso de debate real: en 2023 el equipo de Amazon Prime Video publicó que había **fusionado** un
-sistema de microservicios en un monolito y reducido el coste de infraestructura en torno al 90 %,
-porque la comunicación entre servicios (a través de almacenamiento y colas) era el gasto principal.
-No es un argumento contra los microservicios en general; es un argumento a favor de **elegir la
-arquitectura por el problema y no por la moda** — y de que las fronteras entre procesos tienen un
-coste que hay que pagar solo cuando compra algo.
+Caso de debate real: en 2023 el equipo de Amazon Prime Video publicó que había **fusionado** en un solo proceso su servicio de monitorización de la calidad del vídeo — construido como componentes distribuidos *serverless* — y reducido su coste de infraestructura en torno al 90 %, porque pasar los datos entre componentes (a través de almacenamiento y orquestación) era el gasto principal. Era un servicio concreto, no todo Prime Video. No es un argumento contra los microservicios en general; es un argumento a favor de **elegir la arquitectura por el problema y no por la moda** — y de que las fronteras entre procesos tienen un coste que hay que pagar solo cuando compra algo.
 
 | Criterio | Favorece monolito | Favorece microservicios |
 |---|---|---|
@@ -216,3 +269,5 @@ microservicios son, ante todo, una forma de organizar **equipos**.
 - Un equipo de 4 personas propone arrancar un producto nuevo con 12 microservicios "para que escale".
   Argumentar en contra con la tabla de criterios. Argumentar a favor en el único escenario en el que
   tendría sentido.
+- PokeAPI devuelve `"weight": 60`. ¿60 qué? ¿Dónde debería estar escrito? ¿Qué pasa si una app de nutrición lo lee como kilos? Comparar con las unidades que nadie ha acordado en [06](06-extremo-a-extremo.md).
+- Una API que solo acepta `POST /api` con un cuerpo `{"accion": "borrarPedido", "id": 7}`: ¿es REST? ¿Importa el nombre? ¿Qué se pierde frente a `DELETE /pedidos/7` (cachés, códigos de estado, idempotencia)?

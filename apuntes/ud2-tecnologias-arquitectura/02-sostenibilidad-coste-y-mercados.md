@@ -106,10 +106,7 @@ barato.
 | **Límites y presupuestos** | Tope de tokens por petición, por usuario, por día; alertas |
 | **Modelos locales** | Coste marginal cero por token a cambio de coste fijo de hardware y menos capacidad ([04](04-edge-fog-mist.md)) |
 
-**Cuotas.** Los planes de suscripción (Copilot, los chats de pago) no cobran por token al usuario,
-pero limitan el número de peticiones "premium" a modelos avanzados por mes; agotado el cupo, se
-degrada a un modelo básico o se paga aparte. Copilot Education entra en esta categoría, y es la
-razón por la que este módulo demuestra agentes en proyección y practica con capa gratuita y local.
+**Cuotas y créditos.** Los planes de suscripción (Copilot, los chats de pago, Claude Code) no muestran un precio por *token*, pero lo repercuten: limitan el uso de los modelos avanzados por periodo, y agotado el cupo se espera al periodo siguiente o se paga aparte. Desde junio de 2026 Copilot lo hace explícito: cada plan trae una asignación mensual de créditos (*GitHub AI Credits*) y cada interacción gasta según el modelo y los *tokens* consumidos; en los planes Free y Student, además, el modelo lo elige siempre la selección automática ([UD1-07](../ud1-digitalizacion-ia-software/07-que-es-la-ia.md)). Es la razón por la que este módulo demuestra agentes en proyección y practica con capa gratuita y local.
 
 **Nube y coste**, la versión general del mismo problema: el modelo de pago por uso de la nube
 ([03](03-niveles-y-funciones-de-la-nube.md)) convierte el gasto de capital (comprar servidores) en

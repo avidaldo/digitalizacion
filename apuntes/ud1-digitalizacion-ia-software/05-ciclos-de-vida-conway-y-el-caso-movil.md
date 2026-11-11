@@ -149,11 +149,7 @@ arquitectura del módulo.
    cobertura. Una app que muestra un error cada vez que no hay red es inservible. Por tanto tiene que
    funcionar con datos locales: una base de datos en el dispositivo (SQLite vía Room en Android, Core
    Data/SwiftData en iOS, Realm, Drift en Flutter).
-2. **Sincronización y conflictos.** Si hay datos locales y datos en el servidor, hay que sincronizar,
-   y si dos dispositivos modifican lo mismo sin conexión, hay conflicto. Estrategias: "gana la
-   última escritura" (simple, pierde datos), registro de operaciones que se reproducen (*event
-   log*), estructuras de datos que se fusionan sin conflicto (**CRDT**, usadas por Figma, Apple
-   Notes, Automerge/Yjs). No hay solución universal; cada dominio tiene la suya.
+2. **Sincronización y conflictos.** Si hay datos locales y datos en el servidor, hay que sincronizar, y si dos dispositivos modifican lo mismo sin conexión, hay conflicto. Estrategias: "gana la última escritura" (simple, pierde datos), registro de operaciones que se reproducen (*event log*), estructuras de datos que se fusionan sin conflicto (**CRDT**, como las de las bibliotecas Automerge y Yjs; Figma usa una variante inspirada en ellas con el servidor como árbitro). No hay solución universal; cada dominio tiene la suya.
 3. **El servidor inicia conversaciones.** Las notificaciones *push* invierten el sentido: el
    servidor avisa al dispositivo. Técnicamente pasan por un servicio del fabricante (FCM de Google,
    APNs de Apple), así que hay un tercero en medio de la arquitectura.
@@ -192,6 +188,8 @@ copia es completa y funciona sin red (*commit* local); la sincronización es exp
 *pull*); los conflictos se detectan y se resuelven en el momento de fusionar (*merge*), no se evitan;
 el servidor (GitHub) es un punto de encuentro, no el dueño de los datos. Quien entiende por qué Git
 funciona así entiende por qué una app móvil bien hecha se parece a Git y no a un navegador.
+
+Lo que Git no resuelve es la coordinación entre personas: quién hace qué, quién revisa y cuándo un cambio está listo. Esa capa — *issues*, *pull requests*, revisión — la añade la plataforma, y está en [11](11-trabajo-en-equipo-con-github.md).
 
 **Consecuencia para el proyecto:** si la empresa elegida tiene un extremo móvil (repartidores,
 operarios de planta con tableta, comerciales en ruta, clientes con app), la sección 5 del informe

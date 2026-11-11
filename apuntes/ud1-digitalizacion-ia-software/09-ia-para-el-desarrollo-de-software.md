@@ -3,7 +3,7 @@
 ## Conclusión primero
 
 Entre 2021 y 2026 el desarrollo de software ha incorporado una familia de herramientas que van del
-autocompletado a agentes que leen un repositorio, modifican ficheros, ejecutan pruebas y abren un
+autocompletado a agentes que leen un repositorio, modifican ficheros, ejecutan pruebas y abren una
 *pull request* solos. Todas se apoyan en el mismo componente — un LLM — y se diferencian en **cuánta
 autonomía** se le da y **a qué se le conecta**. Las piezas con nombre propio son cinco: el
 **asistente** (chat o autocompletado), el **agente** (LLM en bucle con herramientas), **MCP** (el
@@ -27,8 +27,8 @@ flowchart LR
 | **Autocompletado** | Sugiere la siguiente línea o bloque mientras se escribe | El desarrollador acepta o ignora cada sugerencia | GitHub Copilot (inline), Cursor Tab, Codeium/Windsurf, Supermaven |
 | **Chat / asistente** | Responde preguntas, explica código, propone cambios que el desarrollador aplica | El desarrollador pega o aplica | Copilot Chat, ChatGPT, Claude, Gemini, el chat de cualquier IDE |
 | **Agente interactivo** | Recibe una tarea, lee el repositorio, edita ficheros, ejecuta comandos y pruebas, itera hasta terminar; pide permiso para acciones sensibles | El desarrollador supervisa en tiempo real y aprueba acciones | Copilot agent mode, Claude Code, Cursor Agent, Codex CLI, Gemini CLI, Windsurf Cascade, Cline, Aider |
-| **Agente asíncrono** | Se le asigna una *issue*; trabaja en un entorno aislado (contenedor en la nube); entrega un PR para revisión | El desarrollador revisa el resultado, no el proceso | Copilot coding agent, Devin, agentes alojados propios o en beta privada según proveedor |
-| **Agente de revisión** | Revisa PR ajenos, comenta, detecta errores y vulnerabilidades | Los humanos deciden qué aceptar | Copilot code review, CodeRabbit, revisores integrados en GitHub/GitLab |
+| **Agente asíncrono** | Se le asigna una *issue*; trabaja en una rama, en un entorno aislado (contenedor en la nube); entrega una *pull request* para revisión (el flujo completo está en [11](11-trabajo-en-equipo-con-github.md)) | El desarrollador revisa el resultado, no el proceso | Copilot cloud agent, Codex en la nube, Devin |
+| **Agente de revisión** | Revisa *pull requests* ajenas, comenta, detecta errores y vulnerabilidades | Los humanos deciden qué aceptar | Copilot code review, CodeRabbit, revisores integrados en GitHub/GitLab |
 
 La distinción importante es la penúltima columna: a mayor autonomía, **la revisión sustituye a la
 escritura** como trabajo principal del desarrollador, y la calidad del resultado depende de la
@@ -93,17 +93,13 @@ herramienta pero la estructura es la misma:
 | **Instrucciones** siempre activas | Convenciones del proyecto que el agente lee en cada tarea: lenguaje, estilo, qué no tocar, cómo probar | `AGENTS.md` (estándar abierto, 2025, adoptado por la mayoría de herramientas), `.github/copilot-instructions.md`, `CLAUDE.md`, `.cursorrules` |
 | **Instrucciones por ruta** | Reglas que aplican solo a ciertos ficheros (tests, backend, migraciones) | `.github/instructions/*.instructions.md` con `applyTo` |
 | ***Prompts* reutilizables** | Tareas parametrizadas invocables como comandos (`/implementar-spec`) | `.github/prompts/*.prompt.md`, comandos de Claude Code |
-| ***Skills*** | Instrucciones más ficheros de apoyo que el agente carga solo cuando la tarea lo requiere | `SKILL.md` en carpetas de *skills* (estándar abierto de Anthropic, adoptado por Copilot y otros) |
+| ***Skills*** | Instrucciones más ficheros de apoyo que el agente carga solo cuando la tarea lo requiere | `SKILL.md` en carpetas de *skills* (estándar abierto *Agent Skills*, publicado por Anthropic y adoptado por Copilot, Codex y otros) |
 | **Agentes personalizados** | Roles con instrucciones y herramientas restringidas (un revisor que solo lee; un implementador que no toca tests) | `.github/agents/*.agent.md`, subagentes de Claude Code |
 | ***Hooks*** | Código determinista que se ejecuta antes o después de acciones del agente (formatear tras editar, bloquear un comando, validar antes de commit) | Configuración JSON de la herramienta |
 
 ### Skills y contexto: qué cargar y cuándo
 
-El **contexto** de una tarea es todo lo que el modelo recibe para responder: instrucciones, *prompt*,
-historial, ficheros y resultados de herramientas. No es memoria permanente: cada herramienta decide
-qué añade, cuánto conserva y qué resume cuando se acerca al límite de la ventana. Si falta contexto,
-el agente puede ignorar una convención o inventar una interfaz; si sobra, aumenta el coste y se
-dificulta encontrar lo relevante.
+El **contexto** de una tarea es todo lo que el modelo recibe para responder: instrucciones, *prompt*, historial, ficheros y resultados de herramientas. No es memoria permanente: cada herramienta decide qué añade, cuánto conserva y qué resume cuando se acerca al límite de la ventana. Si falta contexto, el agente puede ignorar una convención o inventar una interfaz; si sobra, aumenta el coste y se dificulta encontrar lo relevante. El tamaño de la ventana, cómo se elige junto con el modelo y el esfuerzo, y los comandos para verla y vaciarla están en [07](07-que-es-la-ia.md).
 
 Para manejarlo, se da al agente información **pertinente, actual y suficiente**: instrucciones
 generales breves para las reglas del repositorio; instrucciones por ruta para reglas locales; y
@@ -112,18 +108,15 @@ instrucciones ha cargado, se divide el trabajo largo en tareas pequeñas y se re
 antes de continuar. El contenido recuperado — incluidos ficheros del proyecto — sigue siendo dato no
 confiable, no una fuente de autoridad: véase la inyección de *prompt* en [10](10-seguridad-y-regulacion.md).
 
-Una **skill** empaqueta instrucciones especializadas y, si hacen falta, ficheros de apoyo. Se guarda
-en una carpeta con un `SKILL.md`; el agente la consulta o carga cuando la tarea corresponde, en vez
-de añadir todo ese material al contexto de cada tarea. Para crear y usar una: identificar una tarea
-recurrente, escribir en `SKILL.md` cuándo aplicarla y los pasos que debe seguir, enlazar ejemplos o
-plantillas de apoyo y probarla con una tarea real. Por ejemplo, una skill de revisión puede indicar
-qué criterios comprobar y dónde está la lista del proyecto. No concede permisos por sí sola ni hace
-fiable el contenido: se aplican el mínimo privilegio y la revisión humana.
+Una ***skill*** empaqueta instrucciones especializadas y, si hacen falta, *scripts*, plantillas o ejemplos, en una carpeta con un fichero `SKILL.md` (en el repositorio, `.github/skills/`, `.claude/skills/` o `.agents/skills/`, según la herramienta). Lo que la distingue de las instrucciones es **cuándo entra en el contexto**, en tres niveles:
 
-El principio de diseño que enseña el tutorial del profesor y que conviene retener: **empezar por las
-instrucciones, no por los agentes**. Las instrucciones son la forma más barata de codificar lo que
-debe aplicarse siempre; los *prompts* dan puntos de entrada fiables; las *skills* y agentes vienen
-después; los *hooks* aportan lo que un LLM no puede garantizar — determinismo.
+1. El agente ve siempre solo el **nombre y la descripción** de cada *skill*, que están en la cabecera YAML del `SKILL.md`: unas líneas por *skill*, aunque haya decenas instaladas.
+2. Si la tarea encaja con la descripción, o el usuario la invoca con `/nombre`, carga el **cuerpo** del `SKILL.md`: el procedimiento que hay que seguir.
+3. Los **ficheros de apoyo** se leen solo si el cuerpo los menciona y la tarea los necesita.
+
+Por eso la descripción es la parte crítica: con una descripción vaga, la *skill* no se activa nunca, o se activa cuando no toca. Las instrucciones, en cambio, entran en todas las tareas: en ellas van las reglas que se cumplen siempre, y en una *skill* los procedimientos que solo hacen falta a veces. Para crear una: identificar una tarea recurrente, escribir en la descripción cuándo aplicarla y en el cuerpo los pasos, enlazar los ejemplos o plantillas de apoyo y probarla con una tarea real. Por ejemplo, una *skill* de revisión puede indicar qué criterios comprobar y dónde está la lista del proyecto. Una *skill* no concede permisos por sí sola ni hace fiable su contenido: se aplican el mínimo privilegio y la revisión humana. Y una *skill* descargada de un desconocido es texto y código de un tercero que el agente seguirá con los permisos del usuario: la cadena de suministro de [10](10-seguridad-y-regulacion.md).
+
+Un principio de diseño que conviene retener: **empezar por las instrucciones, no por los agentes**. Las instrucciones son la forma más barata de codificar lo que debe aplicarse siempre; los *prompts* dan puntos de entrada fiables; las *skills* y los agentes personalizados vienen después, cuando hay procedimientos o roles que se repiten; los *hooks* aportan lo que un LLM no puede garantizar — determinismo.
 
 ## MCP: el estándar para conectar herramientas y datos
 
@@ -241,11 +234,7 @@ exactamente qué se quiere**. Dos respuestas de la industria, opuestas:
 - ***Vibe coding*** (término de Karpathy, febrero de 2025): describir vagamente, aceptar lo que
   salga, probar, pedir cambios, sin leer el código. Funciona para prototipos desechables y para
   quien no va a mantener el resultado. Produce sistemas que nadie entiende.
-- ***Spec-driven development*** (SDD): escribir primero una especificación precisa — objetivo,
-  requisitos numerados, casos límite, criterios de aceptación — y que el agente implemente *a partir
-  de ella*, con trazabilidad (cada función referencia el requisito que cumple). Herramientas de 2025:
-  GitHub Spec Kit, Kiro (AWS), y la disciplina que enseña el tutorial del profesor con instrucciones
-  y *prompts* en el repositorio.
+- ***Spec-driven development*** (SDD): escribir primero una especificación precisa — objetivo, requisitos numerados, casos límite, criterios de aceptación — y que el agente implemente *a partir de ella*, con trazabilidad (cada función referencia el requisito que cumple). Herramientas de 2025: GitHub Spec Kit, que encadena pasos para el agente — principios del proyecto (*constitution*), especificación (*specify*), plan técnico (*plan*), lista de tareas (*tasks*) e implementación (*implement*) —; Kiro (AWS), que genera requisitos, diseño y tareas; o, sin herramienta específica, ficheros de instrucciones y *prompts* en el propio repositorio.
 
 SDD concreta **qué** debe hacer el sistema; **test-driven development** (TDD) guía **cómo** se
 desarrolla cada comportamiento. En TDD se escribe primero una prueba que expresa el resultado
@@ -259,6 +248,33 @@ pruebas guían la implementación y permiten verificar cada requisito. Un agente
 ejecutar los pasos, pero el desarrollador decide si las pruebas representan bien la necesidad y
 revisa el código: que la suite pase no demuestra que la especificación sea correcta ni que no falten
 casos.
+
+### Un ejemplo pequeño de principio a fin
+
+Una app muestra fichas de pokémon a partir de PokeAPI ([04](04-front-back-cliente-servidor.md)). La especificación de una funcionalidad cabe en una *issue*:
+
+```markdown
+## Buscar pokémon por nombre
+
+Objetivo: que el usuario encuentre un pokémon escribiendo su nombre.
+
+Requisitos
+- R1. La búsqueda no distingue mayúsculas: "Pikachu" y "pikachu" dan el mismo resultado.
+- R2. Se muestran el nombre, los tipos, la altura en metros y el peso en kilos.
+- R3. Si el nombre no existe, se muestra "No encontrado"; no es un error de la app.
+- R4. Si la API no responde en 5 segundos, se muestra "Servicio no disponible".
+
+Criterios de aceptación
+- Dado "PIKACHU", se muestra "pikachu · electric · 0,4 m · 6 kg".
+- Dado "noexiste", la API responde 404 y se muestra "No encontrado".
+- Si la API no contesta, a los 5 segundos se muestra el aviso de R4.
+
+Fuera de alcance: búsqueda parcial ("pika") y por número.
+```
+
+Dos requisitos dependen del contrato de la API, y conviene comprobarlo en vez de suponerlo. Para R1, PokeAPI acepta hoy `PIKACHU` y responde 200, pero los nombres que devuelve están siempre en minúsculas; si la app los convierte antes de llamar, no depende de un comportamiento que podría cambiar. Para R2, la API da la altura en decímetros y el peso en hectogramos, así que hay que convertir. De los criterios salen las pruebas, antes que el código (TDD): una por criterio, con la API simulada para no depender de la red y para poder provocar el 404 y el silencio de R4. Primero fallan (*red*), se implementa lo justo (*green*), se mejora (*refactor*). Quien implementa — una persona o un agente — trabaja en una rama y abre una *pull request* que dice `Closes #12` ([11](11-trabajo-en-equipo-con-github.md)), y quien revisa comprueba requisito por requisito.
+
+Lo que una persona tiene que preguntarse aunque todo esté en verde: ¿las pruebas comprueban de verdad la conversión de unidades, o solo que aparece un número? ¿Qué pasa con los nombres compuestos, que PokeAPI escribe con guion (`mr-mime`)? Esos huecos no los detecta la suite: los detecta quien entiende el dominio y el contrato.
 
 SDD es interesante para este módulo porque cierra el círculo con los ciclos de vida de
 [05](05-ciclos-de-vida-conway-y-el-caso-movil.md): recupera un artefacto de aspecto "cascada" (la
@@ -315,8 +331,7 @@ que la IA produce**, no lo que la IA hace innecesario.
 El módulo demuestra agentes en proyección; la práctica del alumno se apoya en la capa gratuita y en
 modelos locales:
 
-- **Copilot Education** en VS Code (cuota limitada de peticiones a modelos avanzados): suficiente
-  para probar instrucciones, *prompts* y el modo agente en un proyecto pequeño.
+- **Copilot Student** en VS Code, gratis para estudiantes verificados: incluye el modo agente, la revisión de código y MCP, con una asignación mensual de créditos y el modelo elegido siempre por **Auto** (noviembre de 2026). Basta para probar instrucciones, *prompts*, *skills* y el modo agente en un proyecto pequeño; elegir modelo y esfuerzo ([07](07-que-es-la-ia.md)) se ve en demostración.
 - **Chats web gratuitos** para especificar, revisar y explicar.
 - **Modelos locales** con Ollama o LM Studio (ver
   [UD2-04](../ud2-tecnologias-arquitectura/04-edge-fog-mist.md)): sin cuota, sin que el código

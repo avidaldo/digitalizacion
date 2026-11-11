@@ -95,14 +95,7 @@ Lo importante de la escalera no son los nombres de los peldaños sino dos observ
 | 3ª | años 70 del s. XX | Electrónica, PLC, informática | Automatización programable |
 | 4ª | 2011 en adelante | Sistemas ciberfísicos, IoT, nube, datos, IA | Producción conectada y basada en datos |
 
-"Industria 4.0" (*Industrie 4.0*) es un término acuñado por el gobierno alemán en la feria de
-Hannover de 2011 como estrategia industrial; no es un estándar técnico. En España el programa
-equivalente se llamó *Industria Conectada 4.0*, y de ahí sale la lista oficial de "tecnologías
-habilitadoras digitales" que usa el currículo de este módulo (ver
-[UD2-01](../ud2-tecnologias-arquitectura/01-tecnologias-habilitadoras.md)). La Comisión Europea
-introdujo en 2021 "Industria 5.0" (centrada en la persona, sostenible, resiliente) — más un
-reposicionamiento político que una revolución tecnológica distinta. Conviene saber que existen ambos
-términos y que su contenido es, en gran medida, quien los defina.
+"Industria 4.0" (*Industrie 4.0*) es un término que se presentó en la feria de Hannover de 2011 como proyecto de la estrategia de alta tecnología del gobierno alemán: es una estrategia industrial, no un estándar técnico. En España el programa equivalente se llamó *Industria Conectada 4.0*, y de ahí sale la lista oficial de "tecnologías habilitadoras digitales" que usa el currículo de este módulo (ver [UD2-01](../ud2-tecnologias-arquitectura/01-tecnologias-habilitadoras.md)). La Comisión Europea introdujo en 2021 "Industria 5.0" (centrada en la persona, sostenible, resiliente) — más un reposicionamiento político que una revolución tecnológica distinta. Conviene saber que existen ambos términos y que su contenido es, en gran medida, quien los defina.
 
 La diferencia real entre la 3ª y la 4ª revolución, para un desarrollador, es esta: en la 3ª la
 máquina está automatizada pero **aislada** (el PLC controla la prensa y nadie fuera de la planta sabe
@@ -126,16 +119,9 @@ qué hace); en la 4ª la máquina **produce datos que salen de la planta** y se 
 Puede parecer que el sector del software está digitalizado por definición. No: su **proceso de
 producción** ha pasado por la misma escalera que cualquier otro.
 
-- Hace veinte años el código se copiaba a un servidor por FTP a mano, las pruebas las hacía una
-  persona siguiendo un documento Word, y "desplegar" era un viernes por la tarde con el teléfono
-  encendido. Es el nivel B: herramientas digitales, proceso manual.
-- El control de versiones (**Git**) es la digitalización del *dato* del sector: el código y su historia
-  se capturan una vez y fluyen (clonar, ramas, revisión). La integración continua digitaliza las
-  pruebas; el despliegue continuo digitaliza la entrega; la infraestructura como código digitaliza
-  el servidor mismo.
-- La IA generativa (UD1, [09](09-ia-para-el-desarrollo-de-software.md)) es el peldaño E aplicado al
-  propio sector: el código, los tickets, la documentación y los logs son datos con los que se entrena
-  y a los que se aplica un modelo.
+- Hace veinte años el código se copiaba a un servidor por FTP a mano, las pruebas las hacía una persona siguiendo un documento Word, y "desplegar" era un viernes por la tarde con el teléfono encendido. Es el peldaño 2: herramientas digitales, proceso manual.
+- El control de versiones (**Git**) es la digitalización del *dato* del sector: el código y su historia se capturan una vez y fluyen (clonar, ramas, revisión). Las *issues* y las *pull requests* digitalizan la coordinación del equipo: quién hace qué y en qué estado está se consulta sin preguntar a nadie ([11](11-trabajo-en-equipo-con-github.md)). La integración continua digitaliza las pruebas; el despliegue continuo digitaliza la entrega; la infraestructura como código digitaliza el servidor mismo.
+- La IA generativa (UD1, [09](09-ia-para-el-desarrollo-de-software.md)) es el peldaño 5 aplicado al propio sector: el código, los tickets, la documentación y los logs son datos con los que se entrena y a los que se aplica un modelo.
 
 Esta lectura importa para el proyecto: cuando un alumno propone digitalizar una empresa, está
 proponiendo *también* un proceso para desarrollar y operar ese software, y ese proceso tiene su propio
@@ -164,7 +150,4 @@ nube concreta) gana eficiencia y pierde autonomía. Las decisiones de digitaliza
 decisiones de a quién se le da poder sobre el negocio. Se retoma con el *lock-in* en
 [UD2-03](../ud2-tecnologias-arquitectura/03-niveles-y-funciones-de-la-nube.md).
 
-**Digitalización sin dato.** Un kiosco de autopedido en un restaurante de comida rápida es
-digitalización del interfaz con el cliente; si el pedido se imprime en cocina y nadie lo almacena, el
-restaurante no ha ganado ningún dato con el que mejorar. La versión completa registra qué se pide, a
-qué hora, cuánto tarda y qué se devuelve — y esa es la diferencia entre el peldaño C y el E.
+**Digitalización sin dato.** Un kiosco de autopedido en un restaurante de comida rápida es digitalización de la interfaz con el cliente; si el pedido se imprime en cocina y nadie lo almacena, el restaurante no ha ganado ningún dato con el que mejorar. La versión completa registra qué se pide, a qué hora, cuánto tarda y qué se devuelve — y esa es la diferencia entre el peldaño 3 (un sistema aislado) y el 5 (el dato como activo).

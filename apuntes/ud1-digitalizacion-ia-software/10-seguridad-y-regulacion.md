@@ -28,10 +28,8 @@ entorno:
 
 - **Planes de consumo gratuitos** (chats web): habitualmente el proveedor **puede usar** las
   conversaciones para entrenar, salvo que se desactive; retención larga.
-- **Planes de empresa y API**: por defecto **no** se entrena con los datos; retención limitada
-  (días) para abuso, o **retención cero** bajo contrato; a menudo con elección de región
-  (servidores en la UE). Copilot Education y los planes empresariales de los grandes proveedores
-  están en esta categoría.
+- **Planes de empresa y API**: por defecto **no** se entrena con los datos; retención limitada (días) para abuso, o **retención cero** bajo contrato; a menudo con elección de región (servidores en la UE). Copilot Business y Copilot Enterprise, y los planes empresariales de los grandes proveedores, están en esta categoría.
+- **Planes individuales de herramientas de desarrollo**: hay que mirar el ajuste concreto, porque cambia. Desde el 24 de abril de 2026, GitHub puede usar para entrenar modelos las interacciones de los planes Copilot Free, Pro, Pro+ y Max, salvo que se desactive *Allow GitHub to use my data for AI model training* en los ajustes de Copilot de la cuenta. La documentación que lo explica no menciona el plan Student (noviembre de 2026), así que la comprobación práctica es abrir esos ajustes en la propia cuenta.
 - **Servidores MCP y herramientas de terceros**: cada uno es un destino distinto. Un servidor MCP
   "gratuito" que resume páginas web recibe las páginas; un conector con una base de datos externa
   envía las consultas y sus resultados.
@@ -174,7 +172,7 @@ personas; (4) documentar qué modelo, qué datos, qué evaluaciones. Y para el p
 
 ### Otras normas que conviene reconocer
 
-- **NIS2** (2022, transposición nacional desde 2024): ciberseguridad obligatoria para entidades
+- **NIS2** (2022; los Estados debían incorporarla a su derecho antes de octubre de 2024, y cada uno lo hace con su propia ley): ciberseguridad obligatoria para entidades
   esenciales e importantes (energía, transporte, sanidad, agua, digital, alimentación...). Si la
   empresa del proyecto es una de esas, tiene obligaciones de gestión de riesgos y notificación de
   incidentes.

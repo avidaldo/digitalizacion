@@ -93,7 +93,7 @@ que la digitalización industrial consiste en engrosar ese nivel: cada vez más 
 | **Qué gestiona** | Información | Procesos físicos |
 | **Prioridad de seguridad** | Confidencialidad → integridad → disponibilidad (la tríada CIA en ese orden) | Seguridad física de las personas → disponibilidad → integridad → confidencialidad. Que la planta no pare y no hiera a nadie va antes que que nadie lea los datos |
 | **Consecuencia de un fallo** | Pérdida de datos, dinero, reputación | Daño físico, lesiones, contaminación, explosión |
-| **Ciclo de vida del equipo** | 3-5 años | 15-30 años: hay PLC en producción con Windows XP (o sin sistema operativo reconocible) |
+| **Ciclo de vida del equipo** | 3-5 años | 15-30 años: hay estaciones SCADA y HMI en producción con Windows XP, y PLC cuyo fabricante dejó de publicar actualizaciones hace años |
 | **Actualizaciones** | Frecuentes, automáticas, se reinicia | Raras, planificadas en paradas de mantenimiento; un reinicio puede parar una línea |
 | **Tiempo real** | *Best effort*: si tarda un poco más, no pasa nada | Determinista: la respuesta debe llegar dentro de un plazo fijo, siempre |
 | **Protocolos** | TCP/IP, HTTP, TLS, SQL | Modbus, PROFINET, EtherNet/IP, OPC UA, CAN, MQTT (para IoT) — muchos sin cifrado ni autenticación porque se diseñaron para redes aisladas |
@@ -105,9 +105,7 @@ que la digitalización industrial consiste en engrosar ese nivel: cada vez más 
 
 ## Similitudes, y por qué convergen
 
-- **Ambos son software ejecutándose en ordenadores.** Un PLC moderno lleva Linux; un SCADA es una
-  aplicación con base de datos y clientes; OPC UA es una arquitectura cliente/servidor con TLS. Las
-  competencias de un desarrollador aplican en ambos mundos.
+- **Ambos son software ejecutándose en ordenadores.** Un PLC moderno ejecuta un sistema operativo de tiempo real, y algunos modelos admiten Linux; un SCADA es una aplicación con base de datos y clientes; OPC UA es una arquitectura cliente/servidor (y de publicación/suscripción) con cifrado y certificados X.509. Las competencias de un desarrollador aplican en ambos mundos.
 - **Ambos se conectan por red**, y cada vez la misma: Ethernet industrial ha sustituido a los buses
   propietarios; MQTT (un protocolo de mensajería ligero pensado para IoT) se usa en planta y en la
   nube.

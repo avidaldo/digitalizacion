@@ -190,10 +190,7 @@ en el abismo no es una THD muerta: es una THD sobre la que se puede decidir con 
 
 ## El informe THD colaborativo
 
-Entregable de esta unidad: un repositorio Git compartido en el que cada alumno documenta una
-tecnología asignada, mediante una rama y un *pull request* que el resto revisa. Practica dos cosas a
-la vez: escribir documentación técnica que otros usan, y el flujo de trabajo colaborativo con Git
-que se da por sabido en el sector.
+Entregable de esta unidad: un repositorio Git compartido en el que cada alumno documenta una tecnología asignada, mediante una rama y una *pull request* que el resto revisa. Practica dos cosas a la vez: escribir documentación técnica que otros usan, y el flujo de trabajo colaborativo con Git que se da por sabido en el sector y que se explica en [UD1-11](../ud1-digitalizacion-ia-software/11-trabajo-en-equipo-con-github.md).
 
 **Estructura de cada sección** (un fichero por tecnología, en Markdown):
 
@@ -211,8 +208,7 @@ que se da por sabido en el sector.
 9. **Fuentes**: enlaces verificables; se distingue fuente primaria (fabricante, norma, artículo) de
    secundaria (prensa).
 
-**Flujo de trabajo:** rama por alumno → *commits* pequeños → PR con descripción → revisión de al
-menos un compañero (comentarios en el PR, no en persona) → corrección → fusión. Las revisiones a
+**Flujo de trabajo:** rama por alumno → *commits* pequeños → PR con descripción → revisión de al menos un compañero (comentarios en la PR, no en persona) → corrección → fusión. Las revisiones a
 los demás deben ser concretas, verificables y útiles para mejorar la sección.
 
 **Uso de IA en el informe:** permitido y esperado para investigar y redactar, con la misma regla que

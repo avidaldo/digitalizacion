@@ -79,8 +79,7 @@ tiene sentido si el flujo de datos de abajo arriba es completo y fiable.
 
 ## El espejo: una petición HTTP de punta a punta
 
-El mismo ejercicio aplicado al software que un alumno de DAM construye. Un usuario pulsa "confirmar
-pedido" en una tienda online:
+El mismo ejercicio aplicado al software que un alumno de DAM construye. Un usuario pulsa "confirmar pedido" en una tienda online (la forma de la petición — método, cabeceras, JSON, código de estado — se explica con PokeAPI en [04](04-front-back-cliente-servidor.md)):
 
 ```mermaid
 flowchart TB

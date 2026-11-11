@@ -90,6 +90,32 @@ legítimas.
 | Kit de desarrollo de una plataforma | "El SDK de Android" | [UD1-02](ud1-digitalizacion-ia-software/02-la-empresa-por-dentro.md) |
 | Cliente oficial que envuelve una API remota | "En vez de hacer HTTP a mano, usa el SDK" | UD1-04 |
 
+## REST
+
+| Acepción | Ejemplo | Dónde |
+| --- | --- | --- |
+| Estilo de arquitectura de Fielding (2000): recursos con URL, métodos HTTP, sin estado y navegación por enlaces (*hypermedia*) | "Esa API no es REST de verdad: no da enlaces" | [UD1-04](ud1-digitalizacion-ia-software/04-front-back-cliente-servidor.md) |
+| Uso corriente: recursos con URL, métodos HTTP y JSON | "La API REST del backend" | UD1-04 |
+| Cualquier API HTTP con JSON, aunque sea RPC (`POST /api` con un campo `accion`) | "Tenemos una API REST" (que solo usa POST) | UD1-04 |
+
+## *Issue*
+
+| Acepción | Ejemplo | Dónde |
+| --- | --- | --- |
+| Unidad de trabajo numerada en una plataforma (GitHub, GitLab), con su discusión | "Asígnate la *issue* 12" | [UD1-11](ud1-digitalizacion-ia-software/11-trabajo-en-equipo-con-github.md) |
+| Informe de fallo (*bug report*) | "Abre una *issue* con los pasos para reproducirlo" | UD1-11 |
+| La especificación que recibe un agente asíncrono | "Asígnale la *issue* al agente" | UD1-09, UD1-11 |
+| Ticket o incidencia de soporte en otras herramientas (*help desk*, Jira) | "Hay una incidencia abierta del cliente" | UD1-02 |
+
+## *Pull request* (PR) / *merge request*
+
+| Acepción | Ejemplo | Dónde |
+| --- | --- | --- |
+| Propuesta de fusionar una rama, con su *diff*, su revisión y sus comprobaciones (GitHub) | "Abre una PR que cierre la #12" | [UD1-11](ud1-digitalizacion-ia-software/11-trabajo-en-equipo-con-github.md) |
+| *Merge request*: lo mismo en GitLab | "La MR está aprobada" | UD1-11 |
+| La unidad de entrega de un agente | "El agente ha abierto una PR" | UD1-09 |
+| Contribución a un proyecto ajeno desde un *fork* | "Mandé una PR a un proyecto de software libre" | UD1-11 |
+
 ## IA (inteligencia artificial)
 
 | Acepción | Ejemplo | Dónde |
@@ -98,7 +124,7 @@ legítimas.
 | IA simbólica: reglas, búsqueda, lógica | "El motor de reglas de la aseguradora" | UD1-07 |
 | Cualquier modelo de *machine learning* | "Detectamos fraude con IA" (un árbol de decisión) | UD1-07 |
 | Un LLM o un producto sobre uno | "Le pregunté a la IA" | UD1-07 |
-| Un agente con herramientas | "La IA ha abierto un PR" | UD1-09 |
+| Un agente con herramientas | "La IA ha abierto una PR" | UD1-09 |
 | Etiqueta de marketing | "Lavadora con IA" | UD1-07 |
 | Inteligencia artificial general (prensa, especulación) | "Cuando llegue la IA..." | UD1-07 |
 | Lo que todavía sorprende ("efecto IA": cuando funciona, deja de llamarse IA) | El ajedrez, el OCR, el GPS | UD1-07 |
@@ -109,6 +135,7 @@ legítimas.
 |---|---|---|
 | Modelo de ML: la función aprendida de los datos, con sus pesos | "Entrenamos un modelo" | UD1-07 |
 | Modelo de lenguaje concreto (producto) | "Cambiamos de modelo por coste" | UD1-09, [UD2-02](ud2-tecnologias-arquitectura/02-sostenibilidad-coste-y-mercados.md) |
+| Gama de un proveedor (Haiku, Sonnet, Opus; Flash; *mini*) | "Para esto basta un modelo pequeño" | UD1-07 |
 | Modelo de datos: entidades y relaciones | "El modelo tiene una N:M" | [UD2-06](ud2-tecnologias-arquitectura/06-dato-informacion-ciclo-de-vida.md) |
 | Modelo de negocio | "Modelo de suscripción" | UD1-02 |
 | Modelo de referencia o de madurez | "Modelo de Purdue", "modelo de madurez digital" | UD1-01, UD1-03 |
@@ -127,6 +154,14 @@ legítimas.
 | *User agent*: el navegador | Cabecera HTTP | UD1-09 |
 | Persona (agente comercial, de seguros) | — | UD1-09 |
 | Agente personalizado en una herramienta (rol con instrucciones y herramientas restringidas) | "El agente revisor solo lee" | UD1-09 |
+
+## *Skill*
+
+| Acepción | Ejemplo | Dónde |
+| --- | --- | --- |
+| Capacidad de una persona (ofertas de empleo, currículos) | "*Skills*: Java, Spring, Docker" | UD1-02 |
+| *Skill* de un agente: carpeta con un `SKILL.md` que se carga solo cuando la tarea lo pide | "Crea una *skill* para revisar PR" | [UD1-09](ud1-digitalizacion-ia-software/09-ia-para-el-desarrollo-de-software.md) |
+| Aplicación de un asistente de voz | "Una *skill* de Alexa" | — |
 
 ## MCP
 
@@ -339,6 +374,14 @@ legítimas.
 | Contexto de negocio: la situación de la empresa | "El contexto de la decisión" (ADR) | UD3-01 |
 | Contexto en programación (objeto de contexto, contexto de ejecución) | — | — |
 | Ingeniería de contexto: dar al agente lo que necesita (instrucciones, ficheros, herramientas) | — | UD1-09 |
+
+## Esfuerzo (*effort*)
+
+| Acepción | Ejemplo | Dónde |
+| --- | --- | --- |
+| Cuánto razona un LLM antes de responder (*effort*, *reasoning effort*, nivel de *thinking*) | "Sube el esfuerzo a *high* para este fallo" | [UD1-07](ud1-digitalizacion-ia-software/07-que-es-la-ia.md) |
+| Estimación del trabajo de una tarea (horas, puntos de historia) | "Esta *issue* tiene un esfuerzo de 3 puntos" | UD1-05 |
+| Campo `effort` de PokeAPI: los puntos de esfuerzo que da un pokémon en el juego | `"effort": 0` en `stats` | UD1-04 |
 
 ## Abierto (open)
 
