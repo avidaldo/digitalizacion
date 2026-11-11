@@ -1,0 +1,4 @@
+# Exports of the Marp decks: generated from the Markdown source, never committed
+apuntes/**/presentaciones/*.pdf
+apuntes/**/presentaciones/*.pptx
+apuntes/**/presentaciones/*.html

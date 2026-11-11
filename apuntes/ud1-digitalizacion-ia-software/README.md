@@ -9,14 +9,15 @@ que un desarrollador va a usar a diario.
 | [01 Qué es digitalizar](01-que-es-digitalizar.md) | Pasar de herramientas aisladas a procesos en los que el dato fluye. |
 | [02 La empresa por dentro](02-la-empresa-por-dentro.md) | Departamentos, sistemas de gestión y equipos de desarrollo. |
 | [03 IT y OT](03-it-y-ot.md) | Dos entornos distintos que necesitan intercambiar datos sin perder seguridad. |
-| [04 Front/back y cliente/servidor](04-front-back-cliente-servidor.md) | Separar responsabilidades de dónde se ejecuta cada componente. |
+| [04 Front/back y cliente/servidor](04-front-back-cliente-servidor.md) | Separar responsabilidades de dónde se ejecuta cada componente; la API REST como frontera. |
 | [05 Ciclos de vida, Conway y el caso móvil](05-ciclos-de-vida-conway-y-el-caso-movil.md) | Organización, método de desarrollo y particularidades del móvil. |
 | [06 Seguir un dato de punta a punta](06-extremo-a-extremo.md) | Qué tiene que ocurrir para que un dato atraviese una empresa sin perder sentido. |
-| [07 Qué es "la IA"](07-que-es-la-ia.md) | Distinguir IA simbólica, ML, *deep learning* y LLM. |
+| [07 Qué es "la IA"](07-que-es-la-ia.md) | Distinguir IA simbólica, ML, *deep learning* y LLM; elegir modelo, esfuerzo y contexto. |
 | [08 IA, datos, sectores y lenguajes](08-ia-datos-sectores-lenguajes.md) | Datos, aplicaciones de IA y herramientas con las que se construyen. |
 | [09 IA para el desarrollo de software](09-ia-para-el-desarrollo-de-software.md) | Asistentes, agentes, RAG, MCP, automatización y flujos SDD/TDD. |
 | [10 Seguridad y regulación](10-seguridad-y-regulacion.md) | Riesgos al tratar datos y conectar IA a sistemas reales. |
+| [11 Trabajar en equipo con GitHub](11-trabajo-en-equipo-con-github.md) | *Issues*, ramas, *pull requests* y revisión: el flujo del sector y la puerta de entrada de los agentes. |
 
-Términos de esta unidad con más de un significado — recogidos en [`../glosario-vivo.md`](../glosario-vivo.md):
-digitalización, IT, servidor, cliente, frontend, backend, IA, modelo, agente, Big Data,
-automatización, optimización.
+Términos de esta unidad con más de un significado — recogidos en [`../glosario-vivo.md`](../glosario-vivo.md): digitalización, IT, servidor, cliente, frontend, backend, API, REST, IA, modelo, agente, *skill*, esfuerzo, contexto, *issue*, *pull request*, Big Data, automatización, optimización.
+
+Cada apunte tiene su [presentación](presentaciones/README.md), que resume sus conceptos centrales y cómo se relacionan; no sustituye al apunte.

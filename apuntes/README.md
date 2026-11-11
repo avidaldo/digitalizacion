@@ -33,6 +33,8 @@ el proyecto del tercer trimestre está en [`../proyecto/`](../proyecto/).
 - [08 IA y datos, sectores, lenguajes](ud1-digitalizacion-ia-software/08-ia-datos-sectores-lenguajes.md)
 - [09 IA aplicada al desarrollo de software](ud1-digitalizacion-ia-software/09-ia-para-el-desarrollo-de-software.md)
 - [10 Seguridad de los datos y regulación](ud1-digitalizacion-ia-software/10-seguridad-y-regulacion.md)
+- [11 Trabajar en equipo con GitHub: *issues*, ramas, *pull requests* y revisión](ud1-digitalizacion-ia-software/11-trabajo-en-equipo-con-github.md)
+- [Presentaciones de la UD1, una por apunte](ud1-digitalizacion-ia-software/presentaciones/README.md)
 
 ### [UD2 — Tecnologías, arquitectura y análisis](ud2-tecnologias-arquitectura/README.md)
 
