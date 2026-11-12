@@ -48,14 +48,13 @@ El trabajo se desplaza de *escribir código* a **especificar, revisar y decidir*
 
 ---
 
-## "Agente": cinco acepciones
+## "Agente": cuatro acepciones
 
 | Acepción | Ámbito | Qué es |
 | --- | --- | --- |
-| Agente software clásico | IA de los años 90, sistemas multiagente | Programa autónomo con creencias, deseos e intenciones (BDI) |
-| *User agent* | HTTP | El navegador, identificado en una cabecera de la petición |
+| Agente software clásico | IA de los años 90, sistemas multiagente | Programa autónomo que percibe su entorno y actúa para cumplir objetivos (p. ej., arquitectura BDI) |
+| *User agent* | HTTP | El programa que hace la petición, normalmente el navegador, identificado en una cabecera |
 | Agente de refuerzo | ML | Lo que aprende una política por prueba y error |
-| Agente comercial o de seguros | Negocio | Una persona |
 | **Agente LLM** | 2023–2026 | **Un LLM en bucle con herramientas, que decide cuál usar y cuándo ha terminado** |
 
 ---

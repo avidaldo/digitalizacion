@@ -33,7 +33,7 @@ legítimas.
 | Acepción | Ejemplo | Dónde |
 |---|---|---|
 | El departamento de sistemas | "Pídeselo a IT" | [UD1-02](ud1-digitalizacion-ia-software/02-la-empresa-por-dentro.md) |
-| Cualquier entorno que procesa información (frente a OT) | "Finanzas es un entorno IT" | UD1-02, [UD1-03](ud1-digitalizacion-ia-software/03-it-y-ot.md) |
+| La tecnología que gestiona información, frente a la OT, que controla procesos físicos | "Convergencia IT/OT" | [UD1-03](ud1-digitalizacion-ia-software/03-it-y-ot.md) |
 | El sector económico | "Trabaja en IT" | — |
 | Los niveles 4-5 del modelo de Purdue | "La DMZ separa IT de OT" | UD1-03 |
 
@@ -151,8 +151,7 @@ legítimas.
 | Flujo de trabajo con LLM (a menudo llamado agente sin serlo) | "Nuestro agente clasifica correos" (es un flujo) | UD1-09 |
 | Agente software clásico (BDI, sistemas multiagente, años 90) | — | UD1-09 |
 | Agente de aprendizaje por refuerzo | "El agente aprende una política" | UD1-07 |
-| *User agent*: el navegador | Cabecera HTTP | UD1-09 |
-| Persona (agente comercial, de seguros) | — | UD1-09 |
+| *User agent*: el programa que hace la petición HTTP, normalmente el navegador | Cabecera `User-Agent` | UD1-09 |
 | Agente personalizado en una herramienta (rol con instrucciones y herramientas restringidas) | "El agente revisor solo lee" | UD1-09 |
 
 ## *Skill*
@@ -223,7 +222,6 @@ legítimas.
 | Acepción | Ejemplo | Dónde |
 |---|---|---|
 | Niveles de servicio: IaaS, PaaS, SaaS, FaaS, BaaS... | "Subir un nivel para no administrar el sistema operativo" | UD2-03 |
-| Niveles geográficos: región, zona de disponibilidad, punto de presencia | "Desplegar en dos zonas" | UD2-03 |
 | Niveles de almacenamiento: caliente, frío, archivo | "Mover a un nivel frío a los 90 días" | UD2-08 |
 | Niveles del modelo de Purdue (0-5) | — | UD1-03 |
 | Capas del continuo *mist* / *fog* / *edge* / nube | — | UD2-04 |

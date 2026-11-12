@@ -61,8 +61,8 @@ presupone aquí):
 - **CRM** (*Customer Relationship Management*): gestión de la relación comercial — contactos,
   oportunidades, historial. Salesforce, HubSpot, Dynamics.
 - **MES** (*Manufacturing Execution System*): sigue la producción en planta en tiempo real (qué
-  orden está en qué máquina, cuánto lleva hecho). Es la frontera entre IT y OT (ver
-  [03](03-it-y-ot.md)).
+  orden está en qué máquina, cuánto lleva hecho). Conecta la planta (OT) con el ERP (IT); ver
+  [03](03-it-y-ot.md).
 - **WMS / SGA** (*Warehouse Management System* / sistema de gestión de almacén): ubicaciones, stock,
   picking.
 - **HRIS** (*Human Resources Information System*): datos de empleados, nóminas, ausencias.
@@ -72,19 +72,14 @@ presupone aquí):
 
 ## Qué departamentos constituyen entornos IT
 
-La expresión tiene dos lecturas, y conviene manejar las dos porque "IT" es otro término polisémico:
+IT y OT clasifican tecnologías, no departamentos ([03](03-it-y-ot.md)): IT es la tecnología que gestiona información; OT, la que controla procesos físicos. Para decir qué departamentos constituyen entornos IT hace falta, por tanto, un criterio, y el que se usa aquí es el de sus sistemas: un departamento es un entorno IT si todos sus sistemas son sistemas de información, y un entorno mixto si además trabaja sobre equipos OT. Con la tabla anterior:
 
-1. **IT como departamento.** "Los de sistemas": el departamento que administra infraestructura,
-   puestos de trabajo, redes, identidades y soporte. En una PYME es una persona o un proveedor
-   externo; en una gran empresa, cientos de personas con un CIO al frente.
-2. **IT como entorno.** Cualquier departamento cuyo trabajo consiste en procesar *información* (no
-   materia) constituye un entorno IT: finanzas, RRHH, comercial, marketing, atención al cliente,
-   compras, administración. Sus herramientas son sistemas de información; su "materia prima" son
-   datos. Por contraste, producción, mantenimiento y logística física operan sobre el mundo físico
-   y constituyen (o incluyen) entornos **OT**, tema del siguiente apunte.
+- **Entornos IT:** finanzas, RRHH, comercial, marketing, atención al cliente y compras. Sus sistemas son ERP, CRM, HRIS, *ticketing* y ofimática.
+- **Entornos mixtos:** producción y mantenimiento; también logística y calidad cuando el almacén está automatizado o la inspección se hace en la línea. Combinan sistemas de gestión IT (GMAO, WMS, LIMS) con equipos OT (PLC, robots, sensores, AGV), y la producción pasa además por el MES, el sistema que conecta la planta con el ERP ([03](03-it-y-ot.md)).
 
-Con la segunda lectura, en una empresa de software **todos los departamentos son entornos IT**,
-incluido el de producción — porque lo que produce es información. Es el caso del sector del título.
+**El departamento de IT** ("los de sistemas": infraestructura, puestos de trabajo, redes, identidades, soporte) no coincide con los entornos IT. Administra los sistemas de información de toda la empresa, pero en la industria la OT suele depender de ingeniería o de mantenimiento. Cuando la red de planta se conecta a la corporativa, decidir quién responde de ella es una de las fricciones de la convergencia IT/OT.
+
+En una empresa de software casi todos los departamentos son entornos IT, incluido el de producción, porque lo que produce es software. Si hay algo parecido a OT, está en otro sitio (última pregunta de [03](03-it-y-ot.md)).
 
 ## Los roles de un equipo de desarrollo de software
 
@@ -132,7 +127,7 @@ La relación va en las dos direcciones.
 - Aparecen roles nuevos: CIO (*Chief Information Officer*, responsable de sistemas), CTO (*Chief
   Technology Officer*, responsable de tecnología de producto — en una empresa de software es el
   puesto técnico más alto; en una industrial, a veces ni existe), CDO (*Chief Data Officer* o
-  *Chief Digital Officer*: la misma sigla para dos puestos distintos, otra polisemia), DPO
+  *Chief Digital Officer*: la misma sigla para dos puestos distintos), DPO
   (*Data Protection Officer*, obligatorio por RGPD en ciertos casos, ver
   [10](10-seguridad-y-regulacion.md)).
 - Desaparecen tareas (teclear facturas) y aparecen otras (revisar excepciones, mantener el sistema).

@@ -177,7 +177,7 @@ Prime Video (2023) fusionó en un proceso un servicio de monitorización distrib
 | | IT / OT | Frontend / backend |
 | --- | --- | --- |
 | Prioridades distintas | Seguridad física, disponibilidad / confidencialidad | Experiencia, latencia / integridad, consistencia |
-| Una frontera con nombre | Nivel 3, DMZ, MES | API, BFF, capa de red |
+| Una frontera con nombre | DMZ (nivel 3.5), entre MES y ERP | API, BFF, capa de red |
 | La frontera se mueve | IIoT y *edge* llevan IT a la planta | SSR y *edge* mueven front y back |
 | Lo que cruza se valida | Cortafuegos, DMZ | "Nunca confíes en el cliente" |
 | Culturas distintas | Ingeniería frente a sistemas | "Los de front" frente a "los de back" |

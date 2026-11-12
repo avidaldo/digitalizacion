@@ -76,8 +76,7 @@ movido.
 
 Los proveedores de nube venden *edge* gestionado (AWS Greengrass y Outposts, Azure IoT Edge y Arc,
 Google Distributed Cloud): el mismo modelo de programación de la nube desplegado en hardware del
-cliente. Es la nube "bajando" a la planta, y el nivel 3 del modelo de Purdue
-([UD1-03](../ud1-digitalizacion-ia-software/03-it-y-ot.md)) es exactamente donde se instala.
+cliente. Es la nube "bajando" a la planta: software gestionado desde la nube que se ejecuta dentro de la red de planta, al otro lado de la frontera IT/OT de [UD1-03](../ud1-digitalizacion-ia-software/03-it-y-ot.md).
 
 ## Fog y mist
 

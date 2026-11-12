@@ -60,15 +60,17 @@ Es el paso del peldaño 3 al 4 de [01](../01-que-es-digitalizar.md), con nombre 
 
 ---
 
-## "IT" tiene dos lecturas
+## Qué departamentos son entornos IT
 
-| Lectura | Qué es | Ejemplo |
+IT y OT clasifican **tecnologías**, no departamentos. Criterio: los sistemas que usa cada uno.
+
+| Entorno | Departamentos | Por qué |
 | --- | --- | --- |
-| IT como **departamento** | "Los de sistemas": infraestructura, puestos, redes, identidades, soporte | En una PYME, una persona o un proveedor externo |
-| IT como **entorno** | Todo departamento cuya materia prima es la *información* | Finanzas, RRHH, comercial, marketing, compras |
+| **IT** | Finanzas, RRHH, comercial, marketing, atención al cliente, compras | Todos sus sistemas son de información: ERP, CRM, HRIS, *ticketing* |
+| **Mixto** | Producción, mantenimiento; logística y calidad si están automatizadas | Sistemas IT (GMAO, WMS, LIMS) sobre equipos **OT** (PLC, robots, AGV) → [03](../03-it-y-ot.md) |
 
-- Por contraste, producción, mantenimiento y logística física operan sobre el mundo físico: **OT** → [03](../03-it-y-ot.md).
-- En una empresa de software, **todos los departamentos son entornos IT**, también el que "produce".
+- **El departamento de IT no coincide con los entornos IT**: en la industria, la OT suele depender de ingeniería o mantenimiento.
+- En una empresa de software, casi todo es entorno IT, también el departamento que "produce".
 
 ---
 

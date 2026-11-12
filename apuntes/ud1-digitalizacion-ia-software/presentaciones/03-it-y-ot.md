@@ -47,7 +47,7 @@ SCADA, HMI, historian    pasarelas           web, apps, portales
 
 - **PLC**: ordenador industrial que lee entradas, aplica lógica y escribe salidas en ciclos de milisegundos.
 - **SCADA / HMI**: la supervisión: pantallas de la planta, alarmas, históricos.
-- **MES**: recibe órdenes del ERP, las reparte a las máquinas y devuelve lo producido. Software de IT que habla con OT.
+- **MES**: recibe órdenes del ERP, las reparte a las máquinas y devuelve lo producido. Software de gestión, pero en la red de planta, por debajo de la DMZ.
 
 ---
 
@@ -57,11 +57,11 @@ SCADA, HMI, historian    pasarelas           web, apps, portales
 | --- | --- | --- | --- |
 | 0–1 | Sensores, actuadores; PLC, DCS | Milisegundos | OT |
 | 2 | SCADA, HMI | Segundos | OT |
-| 3 | MES, historian, planificación | Minutos–horas | Frontera |
-| 3.5 | DMZ industrial | — | Frontera |
-| 4–5 | ERP, correo, BI; red corporativa | Horas–días | IT |
+| 3 | MES, historian, planificación detallada | Segundos–días | OT |
+| 3.5 | DMZ industrial (añadida por la ciberseguridad industrial) | — | Frontera |
+| 4–5 | ERP, correo, BI; red corporativa | Días–meses | IT |
 
-Dos lecciones, no una lista: **el tiempo que importa es distinto en cada nivel** (un PLC que tarda 2 s es un accidente; un ERP que tarda 2 s es normal), y **la frontera es el nivel 3**, que la digitalización va engrosando.
+Dos lecciones, no una lista: **el tiempo que importa es distinto en cada nivel** (un PLC que tarda 2 s es un accidente; un ERP que tarda 2 s es normal), y **la frontera está entre los niveles 3 y 4**: la interfaz de ISA-95, por la que la digitalización hace pasar cada vez más datos y órdenes.
 
 ---
 
@@ -93,8 +93,8 @@ Dos lecciones, no una lista: **el tiempo que importa es distinto en cada nivel**
 
 | Época | Dónde está la frontera |
 | --- | --- |
-| Años 80–90 | Nítida: OT eléctrica y neumática, IT en la oficina; no se hablan |
-| 2000–2010 | Una pasarela: aparece el MES, SCADA pasa a Windows y Ethernet |
+| Hasta los 80 | Nítida: la OT ya es digital (PLC, DCS), pero en redes propias; no se habla con la oficina |
+| Años 90–2000 | Una pasarela: SCADA pasa a Windows, aparece el MES, ISA-95 (2000) normaliza su interfaz con el ERP |
 | 2010–2020 | IIoT y nube: ¿dónde está la frontera si el historian está en AWS? |
 | 2020–2026 | *Edge* e IA en planta: un modelo de visión corre al pie de la línea, pero se entrena en la nube y se despliega con contenedores |
 

@@ -41,10 +41,9 @@ instrucciones, las herramientas).
 
 | Acepción | Época y ámbito | Qué es |
 |---|---|---|
-| Agente software clásico | IA de los años 90, sistemas multiagente | Programa autónomo con creencias, deseos e intenciones (arquitectura BDI) que percibe y actúa en un entorno; Prolog, JADE |
-| *User agent* | HTTP, desde 1991 | El navegador, identificado en una cabecera de la petición |
+| Agente software clásico | IA de los años 90, sistemas multiagente | Programa autónomo que percibe su entorno y actúa sobre él para cumplir sus objetivos; la arquitectura BDI (creencias, deseos, intenciones) es la más conocida; JADE |
+| *User agent* | HTTP (cabecera `User-Agent`, estandarizada en HTTP/1.0, 1996) | El programa que hace la petición, normalmente el navegador, identificado en esa cabecera |
 | Agente de aprendizaje por refuerzo | ML | Lo que aprende una política por prueba y error |
-| Agente comercial, agente de seguros | Negocio | Una persona |
 | **Agente de IA / agente LLM** | 2023-2026 | **Un LLM ejecutado en bucle con acceso a herramientas**, que decide él mismo qué herramienta llamar y cuándo ha terminado |
 
 La definición operativa que usa la industria (Anthropic, *Building effective agents*, 2024) separa

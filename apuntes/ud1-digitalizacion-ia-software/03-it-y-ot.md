@@ -60,31 +60,27 @@ correo, webs, aplicaciones móviles, bases de datos relacionales.
 **En la frontera:**
 
 - **MES** (*Manufacturing Execution System*). Recibe órdenes de fabricación del ERP, las reparte a las
-  máquinas, recoge de la planta cuánto se ha producido y con qué calidad, y lo devuelve al ERP. Es
-  software de IT que habla con OT.
+  máquinas, recoge de la planta cuánto se ha producido y con qué calidad, y lo devuelve al ERP. Por su función es software de gestión, como el de IT; por su posición en la red, el modelo de Purdue (siguiente apartado) lo coloca en el lado de planta, por debajo de la DMZ.
 - **DMZ industrial / pasarela.** Zona de red intermedia con cortafuegos a ambos lados, para que IT y
   OT intercambien datos sin que un ataque en la web de la empresa llegue a la prensa hidráulica.
 
 ## El modelo de Purdue: la frontera tiene nombre y número
 
-La norma **ISA-95** (y el modelo de Purdue del que deriva) organiza todo lo anterior en niveles. Se
-cita constantemente en ciberseguridad industrial y en integración IT/OT:
+El **modelo de Purdue**, desarrollado en la Universidad de Purdue a principios de los 90, organiza todo lo anterior en niveles. La norma **ISA-95** (2000) toma de él los niveles 0-4 para definir cómo se integra la planta con el ERP, y las guías de ciberseguridad industrial le añadieron después la DMZ como nivel 3.5. Se cita constantemente en los dos ámbitos:
 
 | Nivel | Qué hay | Escala de tiempo | Mundo |
 |---|---|---|---|
 | 0 | Proceso físico: sensores, actuadores | milisegundos | OT |
 | 1 | Control: PLC, DCS | milisegundos–segundos | OT |
 | 2 | Supervisión: SCADA, HMI | segundos–minutos | OT |
-| 3 | Operaciones de planta: MES, historian, planificación | minutos–horas | frontera |
+| 3 | Operaciones de planta: MES, historian, planificación detallada | segundos–días | OT |
 | 3.5 | DMZ industrial | — | frontera |
-| 4 | Negocio: ERP, correo, BI | horas–días | IT |
+| 4 | Negocio: ERP, correo, BI | días–meses | IT |
 | 5 | Red corporativa / Internet | — | IT |
 
 La utilidad del modelo no es memorizar los niveles sino ver dos cosas: (1) que el **tiempo** que
 importa en cada nivel es distinto — un PLC que tarda 2 segundos en reaccionar es un accidente, un ERP
-que tarda 2 segundos en abrir una factura es normal — y (2) que la **frontera es el nivel 3**, y
-que la digitalización industrial consiste en engrosar ese nivel: cada vez más datos suben y más
-órdenes bajan.
+que tarda 2 segundos en abrir una factura es normal — y (2) que la **frontera está entre los niveles 3 y 4**: es la interfaz que normaliza ISA-95 y donde se pone la DMZ, y la digitalización industrial consiste en que por ella circule cada vez más: más datos de planta suben y más órdenes bajan.
 
 ## Diferencias
 
@@ -106,8 +102,8 @@ que la digitalización industrial consiste en engrosar ese nivel: cada vez más 
 ## Similitudes, y por qué convergen
 
 - **Ambos son software ejecutándose en ordenadores.** Un PLC moderno ejecuta un sistema operativo de tiempo real, y algunos modelos admiten Linux; un SCADA es una aplicación con base de datos y clientes; OPC UA es una arquitectura cliente/servidor (y de publicación/suscripción) con cifrado y certificados X.509. Las competencias de un desarrollador aplican en ambos mundos.
-- **Ambos se conectan por red**, y cada vez la misma: Ethernet industrial ha sustituido a los buses
-  propietarios; MQTT (un protocolo de mensajería ligero pensado para IoT) se usa en planta y en la
+- **Ambos se conectan por red**, y cada vez la misma: Ethernet industrial va sustituyendo a los
+  buses de campo; MQTT (un protocolo de mensajería ligero pensado para IoT) se usa en planta y en la
   nube.
 - **Ambos se atacan.** Con la conexión desapareció el *air gap*. Casos de referencia: *Stuxnet*
   (2010, malware que dañó centrifugadoras iraníes manipulando PLC Siemens); *Triton/Trisis* (2017,
@@ -131,10 +127,8 @@ artificial).
 Este es el punto conceptual del módulo aplicado a IT/OT. Dónde termina IT y empieza OT depende de la
 tecnología del momento:
 
-- **Años 80-90:** frontera nítida. OT era eléctrica y neumática; IT era el ordenador de la oficina.
-  No se hablaban.
-- **2000-2010:** el MES aparece como puente; SCADA pasa a Windows y a red Ethernet. La frontera es
-  una pasarela.
+- **Hasta los 80:** frontera nítida. La OT ya era digital (PLC desde finales de los 60, DCS desde 1975), pero funcionaba en redes y buses propios, sin conexión con los ordenadores de la oficina.
+- **Años 90-2000:** SCADA y HMI pasan a PC con Windows; aparece el MES como puente con el ERP, e ISA-95 (2000) normaliza esa interfaz; Ethernet industrial empieza a sustituir a los buses de campo. La frontera es una pasarela.
 - **2010-2020:** IIoT y nube. Los datos de la planta se analizan en un centro de datos a mil
   kilómetros. ¿Dónde está la frontera si el historian está en AWS?
 - **2020-2026:** *edge computing* e IA en planta. Un modelo de visión artificial que detecta

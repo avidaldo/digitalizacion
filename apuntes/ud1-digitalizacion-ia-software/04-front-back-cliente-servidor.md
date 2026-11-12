@@ -251,11 +251,10 @@ microservicios son, ante todo, una forma de organizar **equipos**.
 | | IT / OT | Frontend / Backend |
 |---|---|---|
 | Dos entornos con prioridades distintas | OT: seguridad física y disponibilidad. IT: confidencialidad e integridad | Frontend: experiencia, latencia percibida, accesibilidad. Backend: integridad, seguridad, consistencia |
-| Una frontera con nombre | Nivel 3 / DMZ (MES, pasarela) | API / BFF / capa de red |
+| Una frontera con nombre | DMZ industrial (nivel 3.5), entre el MES y el ERP | API / BFF / capa de red |
 | La frontera se mueve con la tecnología | IIoT y *edge* llevan IT a la planta | SSR y *edge functions* llevan el backend al borde y el frontend al servidor |
 | Lo que cruza la frontera se valida | Cortafuegos, protocolos, DMZ | "Nunca confíes en el cliente" |
 | Gente y cultura distintas | Ingeniería frente a sistemas | "Los de front" frente a "los de back" (y la ley de Conway) |
-| Términos polisémicos | "Sistema", "controlador", "servidor" en planta | "Servidor", "cliente", "frontend" |
 
 ## Para debatir
 

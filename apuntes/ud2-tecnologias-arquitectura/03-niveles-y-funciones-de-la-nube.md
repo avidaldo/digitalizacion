@@ -11,14 +11,9 @@ ejecutar aplicaciones, guardar datos, procesarlos, comunicarlos — con la difer
 contratan en minutos y se pagan por hora. Para un desarrollador de DAM, la decisión práctica es qué
 nivel usar para desplegar una aplicación: cuanto más alto, menos trabajo y menos control.
 
-## "Niveles" tiene dos lecturas
+## Qué son aquí los "niveles"
 
-En la industria hay dos cosas que se llaman "niveles de la nube", y conviene conocer ambas:
-
-1. **Niveles de servicio** (IaaS, PaaS, SaaS...): *qué* se alquila. Es la lectura habitual y la que
-   se desarrolla a continuación.
-2. **Niveles geográficos** (región, zona de disponibilidad, punto de presencia en el borde): *dónde*
-   está físicamente lo alquilado. Se trata al final del apunte y enlaza con [04](04-edge-fog-mist.md).
+El currículo habla de "niveles de la nube" sin precisar. Aquí se entienden como los **modelos de servicio** (IaaS, PaaS, SaaS y sus variantes): *qué* se alquila y cuánto administra el proveedor. Es la clasificación de la definición de referencia del NIST (SP 800-145, que los llama *service models*). Al final del apunte se trata además *dónde* está físicamente lo alquilado, porque enlaza con [04](04-edge-fog-mist.md).
 
 ## Niveles de servicio: quién administra qué
 
@@ -148,9 +143,9 @@ de datos Postgres):
 No hay una opción correcta: hay una opción por situación. Un desarrollador que solo conoce un nivel
 elige mal cuando la situación cambia.
 
-## Niveles geográficos: región, zona, borde
+## Dónde está la nube: región, zona, borde
 
-La segunda lectura de "niveles". Un proveedor grande organiza su infraestructura en:
+Un proveedor grande organiza su infraestructura física en:
 
 - **Regiones**: ubicaciones geográficas independientes (Irlanda, Fráncfort, París, Madrid, Virginia
   del Norte...). Se elige por latencia, por precio y, sobre todo, por **jurisdicción**: los datos en
