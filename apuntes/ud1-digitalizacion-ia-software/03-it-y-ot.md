@@ -131,15 +131,9 @@ tecnología del momento:
 - **Años 90-2000:** SCADA y HMI pasan a PC con Windows; aparece el MES como puente con el ERP, e ISA-95 (2000) normaliza esa interfaz; Ethernet industrial empieza a sustituir a los buses de campo. La frontera es una pasarela.
 - **2010-2020:** IIoT y nube. Los datos de la planta se analizan en un centro de datos a mil
   kilómetros. ¿Dónde está la frontera si el historian está en AWS?
-- **2020-2026:** *edge computing* e IA en planta. Un modelo de visión artificial que detecta
-  defectos se ejecuta en un servidor al pie de la línea (OT por localización) pero se entrena en la
-  nube con herramientas de IT y se despliega con contenedores Docker. El PLC "virtual" es software en
-  un servidor genérico. La frontera ya no es un lugar: es una decisión de diseño.
+- **2020-2026:** *edge computing* e IA en planta. Un modelo de visión artificial que detecta defectos se ejecuta en un PC industrial al pie de la línea (OT por localización), pero se entrena en la nube con herramientas de IT y se despliega con contenedores Docker. A ese PC se le suele llamar "servidor", pero lo es como máquina, no necesariamente como rol: con la cámara y con la nube es él quien inicia la conversación, es decir, el cliente, y con el PLC depende del protocolo ([04](04-front-back-cliente-servidor.md) separa las dos acepciones). El PLC "virtual" es software en un servidor genérico, también en el sentido de máquina. La frontera ya no es un lugar: es una decisión de diseño.
 
-La misma frase describe la frontera frontend/backend: en 1995 el navegador mostraba HTML y el
-servidor hacía todo; en 2015 el navegador ejecutaba la aplicación entera; en 2026 hay código de
-"frontend" que se ejecuta en el servidor y código de "backend" que se ejecuta en el borde de la red.
-Ese paralelo se desarrolla en [04](04-front-back-cliente-servidor.md).
+La frontera frontend/backend también se mueve, pero no avanza en una dirección: oscila. En 1995 el servidor generaba todo el HTML (CGI, PHP) y el navegador solo lo pintaba: la presentación ya se programaba en el servidor. Hacia 2015, en una SPA, el navegador ejecutaba toda la interfaz y el servidor se quedaba con los datos y las reglas. En 2026 un mismo proyecto decide componente a componente si se ejecuta en el servidor, en el navegador o en los dos (SSR, React Server Components), y parte del backend sale del centro de datos central a cientos de nodos de un proveedor cerca del usuario (*edge functions*). Ese *edge* no es el de la planta: allí significa "cerca de la máquina", aquí "cerca del usuario" ([UD2-04](../ud2-tecnologias-arquitectura/04-edge-fog-mist.md) recoge las acepciones). El paralelo se desarrolla en [04](04-front-back-cliente-servidor.md), y el péndulo completo, desde el *mainframe*, en [UD2-05](../ud2-tecnologias-arquitectura/05-donde-vive-la-logica.md).
 
 ## Tecnologías típicas de planta y de negocio
 
@@ -187,3 +181,4 @@ integración debe indicar con cuál de ellos se conecta cada área digitalizada.
 - ¿Tiene sentido hablar de OT en una empresa de software? ¿Qué sería lo más parecido (el centro de
   datos, los sistemas de despliegue en producción)? ¿Comparten la cultura de "no toques lo que
   funciona"?
+- El PC de visión al pie de la línea: ¿con quién habla y quién inicia cada conversación? ¿En cuál de ellas es servidor? Y un sensor con Modbus TCP, que solo contesta cuando le preguntan, ¿es cliente o servidor?

@@ -44,6 +44,7 @@ legítimas.
 | Máquina física | "El servidor está en el armario" | [UD1-04](ud1-digitalizacion-ia-software/04-front-back-cliente-servidor.md) |
 | Proceso que escucha en un puerto | "Arranca el servidor de desarrollo" | UD1-04, [UD2-04](ud2-tecnologias-arquitectura/04-edge-fog-mist.md) (`ollama serve` en el portátil) |
 | Rol en una conversación (quien responde) | "Postgres es el servidor y la API su cliente" | UD1-04 |
+| Rol en los protocolos de planta (Modbus TCP, OPC UA): suele ser el dispositivo de campo o el PLC, que tiene el dato y responde; el SCADA que pregunta es el cliente | "El sensor es un servidor Modbus" | [UD1-03](ud1-digitalizacion-ia-software/03-it-y-ot.md) (para debatir) |
 | Máquina virtual o instancia en la nube | "Levantamos tres servidores más para el pico" | [UD2-03](ud2-tecnologias-arquitectura/03-niveles-y-funciones-de-la-nube.md) |
 | Contenedor | "Cada microservicio corre en su servidor" | UD1-04 |
 | Función *serverless* (que "no tiene servidor") | "Esto va en un servidor *serverless*" | UD2-03 |

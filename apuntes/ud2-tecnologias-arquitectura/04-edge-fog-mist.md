@@ -29,12 +29,7 @@ físico de por medio.
 
 ## Edge computing
 
-**Qué es.** Cómputo situado en el borde de la red, próximo a la fuente de datos o al usuario, que
-procesa localmente y envía a la nube solo lo necesario (resultados, agregados, excepciones). No
-sustituye a la nube: la complementa. El patrón habitual es **entrenar en la nube, ejecutar en el
-borde**: el modelo de visión artificial se entrena con millones de imágenes en un centro de datos y
-se despliega en un servidor pequeño al pie de la línea de producción, que decide en 20 ms si la
-pieza es defectuosa sin que la imagen salga de la planta.
+**Qué es.** Cómputo situado en el borde de la red, próximo a la fuente de datos o al usuario, que procesa localmente y envía a la nube solo lo necesario (resultados, agregados, excepciones). No sustituye a la nube: la complementa. El patrón habitual es **entrenar en la nube, ejecutar en el borde**: el modelo de visión artificial se entrena con millones de imágenes en un centro de datos y se despliega en un PC industrial al pie de la línea de producción, que decide en 20 ms si la pieza es defectuosa sin que la imagen salga de la planta.
 
 **Por qué** (las cuatro razones, con ejemplos):
 

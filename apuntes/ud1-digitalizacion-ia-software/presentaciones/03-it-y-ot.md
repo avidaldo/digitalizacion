@@ -104,13 +104,13 @@ Dos lecciones, no una lista: **el tiempo que importa es distinto en cada nivel**
 
 ## El mismo patrón en el software
 
-| Año | Navegador | Servidor |
+| Año | Dónde se genera la interfaz | Dónde están datos y reglas |
 | --- | --- | --- |
-| 1995 | Muestra HTML | Hace todo |
-| 2015 | Ejecuta la aplicación entera | Datos y reglas |
-| 2026 | Parte del "frontend" se ejecuta en el servidor | Parte del "backend" se ejecuta en el borde de la red |
+| 1995 | Servidor (CGI, PHP); el navegador la pinta | Servidor |
+| 2015 | Navegador: toda la interfaz (SPA) | Servidor, detrás de una API |
+| 2026 | Se decide por componente: servidor, navegador o ambos | Servidor, y parte en nodos cerca del usuario (*edge*) |
 
-Dos entornos, prioridades distintas, una frontera con nombre que se valida y que se mueve con la tecnología: se desarrolla en [04](../04-front-back-cliente-servidor.md).
+**No avanza: oscila.** Dos entornos, prioridades distintas, una frontera con nombre que se valida y que se mueve con la tecnología: se desarrolla en [04](../04-front-back-cliente-servidor.md).
 
 ---
 
