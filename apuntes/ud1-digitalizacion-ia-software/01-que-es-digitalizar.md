@@ -114,7 +114,7 @@ qué hace); en la 4ª la máquina **produce datos que salen de la planta** y se 
 | Administración pública | Sede electrónica, certificado digital, cita previa | Trámites sin ventanilla (y ventanillas que ya no atienden sin cita) |
 | **Software** | CI/CD, nube, control de versiones, IA asistida | (Ver siguiente apartado) |
 
-## El sector del título también se digitaliza
+## El propio sector del software también se digitaliza
 
 Puede parecer que el sector del software está digitalizado por definición. No: su **proceso de
 producción** ha pasado por la misma escalera que cualquier otro.
